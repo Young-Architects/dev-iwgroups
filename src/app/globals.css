@@ -1,0 +1,168 @@
+
+
+:root {
+  --black-color: #2C2C2C; 
+  --primary-color:#284362; 
+  --primary-font:'Rubik';
+}
+
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik/static/Rubik-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--primary-font);
+    font-size: 18px;
+    
+}
+
+.inner_section{
+    max-width: 1400px;
+    margin: auto;
+    padding: 0px 18px;
+}
+
+/*HEADER CSS*/
+ 
+.top_bar-header {
+    background: var(--black-color);
+}
+
+.top_bar p {
+    margin: 0px;
+    padding: 10px 0px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+.main_header {
+    background: var(--primary-color);
+    padding: 7px 0px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 18% 1fr 18%;
+    gap: 10px;
+    align-items: center;
+}
+
+.header_3 {
+    display: flex;
+    justify-content: end;
+}
+
+ul.nav_wrapper {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+}
+
+ul.nav_wrapper li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+ul.nav_wrapper {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+}
+
+ul.nav_wrapper li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+ 
+
+.header_3 button {
+    padding: 16px 33px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.header_3 button a {
+   
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+/*FOOTER CSS*/
+
+.footer_outer {
+    background: #284362;
+    color: #fff;
+}
+
+ 
+
+.footer_outer {
+    background: #284362;
+    color: #fff;
+    padding: 60px 0px 24px 0px;
+}
+
+.main_footer_first {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+    padding-bottom: 50px;
+}
+
+h3.footer_h {
+    margin: 0px 0px 35px 0px;
+    font-size: 20px;
+}
+
+ul.footer_nav {
+    padding: 0px;
+    list-style: none;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+ul.footer_nav li a {
+    color: #fff;
+    text-decoration: none;
+ 
+}
+
+.second_footer_outer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+}
+
+.f_right_section {
+    display: flex;
+    gap: 30px;
+}
+
+.main_footer_second {
+    border-top: 1px solid;
+}
+
+.f_left_section p {
+    margin: 0px;
+}
