@@ -1,9 +1,11 @@
+import Homepage from "@/components/home/homepage"
+ 
  
 
 function page() {
   return (
      <>
-     <h1>welcome to the home page</h1>
+      <Homepage/>
      </>
   )
 }

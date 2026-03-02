@@ -43,13 +43,7 @@ function Header() {
               </div>
 
                
-              <div className="header_3">
-                <button>
-                <Link href='/contact-us'>
-                  Contact Us
-                </Link>
-                </button>
-              </div>
+              
 
             
               <div 
