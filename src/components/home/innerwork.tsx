@@ -1,8 +1,8 @@
 'use client'
 
-import type { OurPhilosophyProps } from '@/types/wordpress';
+import type { InnerworkGroupsProps } from '@/types/wordpress';
 
-function OurPhilosophy({ our_philosophy }: OurPhilosophyProps) {
+function InnerworkGroups({ our_philosophy }: InnerworkGroupsProps) {
 
   return (
     <div className="philos_wrapper">
@@ -11,14 +11,14 @@ function OurPhilosophy({ our_philosophy }: OurPhilosophyProps) {
         <div className="section_top">
           <h4 className='top_heading'>Innerwork Groups</h4>
           <h3 className='section_m_heading'>
-            {our_philosophy.inner_work_heading}
+            {our_philosophy?.inner_work_heading}
           </h3>
         </div>
 
         <div className="left_sec">
           {our_philosophy?.inner_work_images?.map((e, i) => (
             <div className="img_wrap" key={i}>
-              <img src={e.image} alt="inner work" />
+              <img src={e?.image} alt="inner work" />
             </div>
           ))}
         </div>
@@ -29,7 +29,7 @@ function OurPhilosophy({ our_philosophy }: OurPhilosophyProps) {
           <div className="in_card" key={index}>
             <div className="in_content">
               <div className="heading">
-                <h3>{e.heading}</h3>
+                <h3>{e?.heading}</h3>
               </div>
 
               <div
@@ -47,4 +47,4 @@ function OurPhilosophy({ our_philosophy }: OurPhilosophyProps) {
   );
 }
 
-export default OurPhilosophy;
+export default InnerworkGroups;

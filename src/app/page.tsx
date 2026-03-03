@@ -1,12 +1,12 @@
 import Homepage from "@/components/home/homepage"
- 
- 
+
+
 
 function page() {
   return (
-     <>
-      <Homepage/>
-     </>
+    <>
+      <Homepage />
+    </>
   )
 }
 

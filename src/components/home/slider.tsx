@@ -46,42 +46,42 @@ function HomeSlider({ slider }: { slider: SliderItem[] }) {
                 {slider.map((e, index) => (
                     <div className="slide" key={index}>
                         <img src={e?.image} alt="slider-image" />
-        
- <div className="slider_content">
-                        <div className="slider_heading">
-                            <h3>{e?.heading}</h3>
+
+                        <div className="slider_content">
+                            <div className="slider_heading">
+                                <h3>{e?.heading}</h3>
+                            </div>
+                            <div className="slider_para">
+
+                                <div
+                                    className="slider_para"
+                                    dangerouslySetInnerHTML={{
+                                        __html: e?.paragraph || '',
+                                    }}
+                                />
+
+                                <div className="global_button">
+                                    <button className='m_button'>Explore Our Companies</button>
+                                    <button className='m_button'>Contact Innerwork Group</button>
+
+                                </div>
+
+                                <div className="dots">
+                                    {slider.map((_, index) => (
+                                        <span
+                                            key={index}
+                                            className={current === index ? 'dot active' : 'dot'}
+                                            onClick={() => setCurrent(index)}
+                                        />
+                                    ))}
+                                </div>
+
+
+
+                            </div>
                         </div>
-                        <div className="slider_para">
-
-                        <div
-                            className="slider_para"
-                            dangerouslySetInnerHTML={{
-                                __html: e?.paragraph || '',
-                            }}
-                        />
-
-                        <div className="global_button">
-                            <button className='m_button'>Explore Our Companies</button>
-                            <button className='m_button'>Contact Innerwork Group</button>
-
-                        </div>
-
-                         <div className="dots">
-                {slider.map((_, index) => (
-                    <span
-                        key={index}
-                        className={current === index ? 'dot active' : 'dot'}
-                        onClick={() => setCurrent(index)}
-                    />
-                ))}
-            </div>
 
 
-
-                        </div>
-                        </div>
-                     
-                       
                     </div>
                 ))}
             </div>
@@ -95,7 +95,7 @@ function HomeSlider({ slider }: { slider: SliderItem[] }) {
             </button>
 
 
-           
+
         </div>
     );
 }
