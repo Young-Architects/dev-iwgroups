@@ -7,10 +7,13 @@ function About({ about }: AboutProps) {
 
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
   const [clickedIndex, setClickedIndex] = useState<number | null>(null)
-
+  const [activeTab, setActiveTab] = useState(0)
   const getActiveIndex = () => {
     return clickedIndex !== null ? clickedIndex : hoverIndex
   }
+
+  console.log(`about`)
+  console.log(about)
 
   return (
     <div className="ab_wrapper">
@@ -25,6 +28,43 @@ function About({ about }: AboutProps) {
             __html: about?.paragraph || '',
           }}
         />
+      </div>
+
+
+      <div className="inner_responsive">
+
+
+        <div className="tabs_wrapper">
+          {about?.about_group?.map((group, i) => (
+            <div
+              key={i}
+              className={`tabs ${activeTab === i ? 'active' : ''}`}
+              onClick={() => setActiveTab(i)}
+            >
+              <img src={group?.group_logo} alt="" />
+            </div>
+          ))}
+        </div>
+
+
+        <div className="tab_content">
+          {about?.about_group?.[activeTab]?.group_card?.map((card, i) => (
+            <div className="content_wrapper" key={i}>
+
+              <div className="i_c">
+                <h3>{card?.service_name}</h3>
+              </div>
+
+              <div className="i_c_p">
+                {card?.list?.map((item, index) => (
+                  <p key={index}>{item?.service}</p>
+                ))}
+              </div>
+
+            </div>
+          ))}
+        </div>
+
       </div>
 
       <div
