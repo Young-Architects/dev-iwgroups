@@ -3,7 +3,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export const fetchPageBySlug = async (slug: string) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/wp-json/wp/v2/pages?slug=${slug}&acf_format=standard`,
+      `${BASE_URL}/api/v1/home`,
       { cache: 'no-store' }
     );
     const data = await res.json();

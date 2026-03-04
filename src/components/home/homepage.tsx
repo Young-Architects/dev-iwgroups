@@ -38,7 +38,7 @@ function Homepage() {
     const philosophy = data?.acf ?? [];
 
 
-    console.log(`data`)
+    // console.log(`data`)
     // console.log(data)
 
     return (

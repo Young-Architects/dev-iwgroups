@@ -11,9 +11,7 @@ function About({ about }: AboutProps) {
   const getActiveIndex = () => {
     return clickedIndex !== null ? clickedIndex : hoverIndex
   }
-
-  console.log(`about`)
-  console.log(about)
+ 
 
   return (
     <div className="ab_wrapper">
