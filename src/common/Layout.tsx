@@ -8,11 +8,11 @@ function Layout({
   children: React.ReactNode;
 }>) {
   return (
-     <>
-     <Header/>
-     {children}
-     <Footer/>
-     </>
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
   )
 }
 

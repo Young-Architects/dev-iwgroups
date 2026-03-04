@@ -1,7 +1,9 @@
 import { OurPhilosophyProps } from '@/types/wordpress'
- 
+
 
 function OurPhilosophy({ philosophy }: OurPhilosophyProps) {
+
+  console.log(philosophy)
 
   if (!philosophy) return null
 

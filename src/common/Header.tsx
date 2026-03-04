@@ -11,28 +11,28 @@ function Header() {
 
   const lastScrollY = useRef(0)
 
-useEffect(() => {
-  const handleScroll = () => {
-    const currentScroll = window.scrollY
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY
 
-    if (currentScroll > 150) {
-      setActiveHeader(true)
-    } else {
-      setActiveHeader(false)
+      if (currentScroll > 150) {
+        setActiveHeader(true)
+      } else {
+        setActiveHeader(false)
+      }
+
+      lastScrollY.current = currentScroll
     }
 
-    lastScrollY.current = currentScroll
-  }
-
-  window.addEventListener("scroll", handleScroll)
-  return () => window.removeEventListener("scroll", handleScroll)
-}, [])
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <>
       <div className={`main_header_outer ${activeHeader ? "active-header" : ""}`}>
 
- 
+
         <div className="outer_section top_bar-header">
           <div className="inner_section">
             <div className="section_wrapper">
@@ -61,7 +61,7 @@ useEffect(() => {
           </div>
         </div>
 
-     
+
         <div className="outer_section main_header">
           <div className="inner_section">
             <div className="section_wrapper">
@@ -76,6 +76,7 @@ useEffect(() => {
                 <div className={`header_2 ${menuOpen ? "active" : ""}`}>
                   <ul className="nav_wrapper">
                     <li><Link href='/'>Home</Link></li>
+                    <li><Link href='/industries'>Industries</Link></li>
                     <li><Link href='/about-us'>About Us</Link></li>
                     <li><Link href='/services'>Services</Link></li>
                     <li><Link href='/blog'>Blog</Link></li>

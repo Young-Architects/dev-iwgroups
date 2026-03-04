@@ -1,8 +1,15 @@
 'use client'
 
-import { MapContainer, TileLayer, Marker, Polyline, Popup, useMap } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Tooltip,
+  useMap
+} from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import 'leaflet-curve'
 import { useEffect } from 'react'
 
 interface Props {
@@ -20,15 +27,57 @@ const DefaultIcon = L.icon({
   iconAnchor: [12, 41],
 })
 
+ 
+
 function FitBounds({ positions }: { positions: [number, number][] }) {
   const map = useMap()
 
   useEffect(() => {
-    map.fitBounds(positions, { padding: [50, 50] })
+    map.fitBounds(positions, {
+      padding: [120, 120],  
+    })
+    map.setZoom(3)
   }, [positions, map])
 
   return null
 }
+
+ 
+
+function CurvedLine({
+  from,
+  to,
+}: {
+  from: [number, number]
+  to: [number, number]
+}) {
+  const map = useMap()
+
+  useEffect(() => {
+    const latlngs = [
+      'M',
+      from,
+      'Q',
+      [(from[0] + to[0]) / 2 + 25, (from[1] + to[1]) / 2],
+      to,
+    ]
+
+    // @ts-ignore (leaflet-curve has no TS types)
+    const curve = L.curve(latlngs, {
+      color: 'blue',
+      weight: 2,
+      dashArray: '6 8',  
+    }).addTo(map)
+
+    return () => {
+      map.removeLayer(curve)
+    }
+  }, [from, to, map])
+
+  return null
+}
+
+ 
 
 export default function GlobalMap({
   indiaLat,
@@ -51,28 +100,34 @@ export default function GlobalMap({
 
   return (
     <MapContainer
-      center={[20, 0]}
-      zoom={2}
       style={{ height: '384px', width: '100%' }}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
+     
     >
       <TileLayer
         attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
+    
       <FitBounds positions={[india, uk]} />
 
+    
       <Marker position={india} icon={DefaultIcon}>
-        <Popup>India</Popup>
+        <Tooltip permanent direction="top">
+          India
+        </Tooltip>
       </Marker>
 
+     
       <Marker position={uk} icon={DefaultIcon}>
-        <Popup>United Kingdom</Popup>
+        <Tooltip permanent direction="top">
+          United Kingdom
+        </Tooltip>
       </Marker>
 
-      <Polyline positions={[india, uk]} color="blue" />
-
+      
+      <CurvedLine from={india} to={uk} />
     </MapContainer>
   )
 }
