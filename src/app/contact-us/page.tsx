@@ -1,9 +1,13 @@
-import React from 'react'
+import Contact from "@/components/contact/contact"
+
+ 
 
 function page() {
+
+ 
   return (
      <>
-     <h1>welcome to the contact us page</h1>
+     <Contact/>
      </>
   )
 }

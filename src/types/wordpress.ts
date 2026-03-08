@@ -132,3 +132,55 @@ export interface PhilosophySection {
 export interface OurPhilosophyProps {
   philosophy?: PhilosophySection
 }
+
+// header types
+
+export type IndustryChild = {
+  menu_name: string
+  menu_link: string
+}
+
+export type IndustryMenu = {
+  menu_name: string
+  children: IndustryChild[]
+}
+
+export type IndustryResponse = {
+  industries_menu: IndustryMenu[]
+}
+
+
+
+// phone number and email 
+
+export interface EmailAddress {
+  email?: string
+}
+
+export interface PhoneNumber {
+  service_number_name?: string
+  first_number?: string
+  second_number?: string
+}
+
+export interface PhoneProps {
+  result?: {
+    email_address?: EmailAddress[]
+    phone_numbers?: PhoneNumber[]
+  }
+}
+
+// address
+
+export interface AddressItem {
+  address_title?: string
+  address?: string
+  address_lat?: string | number
+  address_long?: string | number
+}
+
+export interface AddressProps {
+  result?: {
+    address?: AddressItem[]
+  }
+}

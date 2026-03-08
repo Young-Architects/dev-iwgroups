@@ -20,6 +20,11 @@ body {
     font-family: var(--primary-font);
     font-size: 18px;
 
+
+}
+
+p {
+    line-height: 32px;
 }
 
 .inner_section {
@@ -27,6 +32,7 @@ body {
     margin: auto;
     padding: 0px 18px;
 }
+
 .inner_responsive {
     display: none;
 }
@@ -196,12 +202,84 @@ body {
 /*HEADER CSS*/
 
 
+.industry_menu{
+position:relative;
+}
+
+.menu_link{
+display:flex;
+align-items:center;
+gap:6px;
+cursor:pointer;
+position: relative;
+}
+
+ul.sub_menu {
+    padding-bottom: 10px;
+}
+ 
+
+li.sub_child-list a {
+    color: var(--primary-yellow)!important;
+    font-size: 18px;
+    text-decoration: underline!important;
+    font-weight: 400!important;
+}
+li.sub_child-list {
+    padding-bottom: 10px;
+}
+
+.menu_arrow{
+transition:0.3s;
+color:#fff;
+}
+
+.menu_arrow.rotate{
+transform:rotate(180deg);
+}
+ 
+.sub_menu_wrapper {
+    background: var(--black-color);
+    gap: 8px;
+    width: 500px;
+    padding: 20px;
+    display: grid;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    right: 0;
+    box-shadow: 0 15px 50px 1px #0000001a;
+    border: 1px solid #c9a2673d;
+
+}
+.menu_link::before {
+    content: "";
+    width: 100%;
+    height: 22px;
+    background: transparent;
+    position: absolute;
+    top: 25px;
+}
+ul.sub_menu {
+    padding: 0px;
+    list-style: none;
+}
+
+ul.sub_menu:not(:last-child) {
+    border-bottom: 1px solid #ffffff52;
+}
+
+.submenu_title{
+font-weight:600;
+margin-bottom:10px;
+font-size: 26px;
+color:#fff;
+}
+
+
 .main_header_outer {
     width: 100%;
-    transition:
-        transform 0.4s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.5s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -212,10 +290,12 @@ body {
     background: #ffffff;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     z-index: 999999999;
-    animation: slideDown 0.4s ease forwards;
     border-bottom: 8px solid var(--primary-yellow);
 }
 
+.main_header_outer.hide-header {
+    transform: translateY(-100%);
+}
 
 @keyframes slideDown {
     from {
@@ -525,6 +605,11 @@ button.m_button {
 /*ABOUT US SECTION*/
 .inner_resp {
     display: none;
+}
+
+.video_card img {
+    width: 100%;
+    cursor: pointer;
 }
 
 .ab_wrapper {
@@ -906,13 +991,14 @@ h4.top_heading::before {
 }
 
 .close_btn {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: #fff;
+    cursor: pointer;
+    background: #c9a267;
     border: none;
     padding: 5px 10px;
-    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
 }
 
 .modal_prev,
@@ -986,14 +1072,405 @@ h3.global_pres_heading {
 
 
 
+/*CONTACT US PAGE*/
+
+.contact_outer {
+    padding: 60px 0px;
+}
+
+.cont_s_first {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+}
+
+.con_left img {
+    width: 100%;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form_outer {
+    display: grid;
+    gap: 18px;
+}
+
+.form_group label {
+    text-transform: capitalize;
+}
+
+.form_group input {
+    padding: 14px 12px;
+    border: 1px solid #8080805c;
+    border-radius: 4px;
+}
+
+.button_group button {
+    background: var(--primary-yellow);
+    width: 100%;
+    padding: 12px;
+    border: unset;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-family: var(--primary-font);
+    margin-top: 18px;
+
+}
+
+.con_right {
+    padding: 24px;
+    box-shadow: 0 15px 50px 1px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    background: #ffff;
+}
+
+.form_group input:focus-visible {
+    border: unset;
+    outline: unset;
+}
+
+.form_group input:focus {
+    border: 1px solid var(--primary-yellow);
+    outline: unset;
+}
+
+
+.number_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background: #faf9f6;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 33px;
+}
+
+.c_n_card {
+    background: #fff;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.c_n_card h4 {
+    margin: 0px;
+    display: flex;
+    font-size: 22px;
+    color: var(--primary-color);
+}
+
+
+
+.c_n_w a {
+    text-decoration: none;
+    color: var(--primary-yellow);
+    font-size: 18px;
+
+}
+
+.c_n_w a:hover {
+    text-decoration: underline;
+
+}
+
+.c_n_w {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.phone_item {
+    display: flex;
+    gap: 12px;
+}
+
+.phone_item svg.icon {
+    color: var(--primary-yellow);
+}
+
+
+.c_address_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    background: #faf9f6;
+    padding: 20px;
+    margin-top: 33px;
+    border-radius: 8px;
+}
+
+.address_w h4 {
+    margin: 0px;
+    font-size: 27px;
+    color: var(--primary-color);
+}
+
+.address_w p {
+    font-size: 16px;
+}
+
+.email_wrapper {
+    margin-top: 33px;
+}
+
+.c_e_card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.c_e_card svg {
+    color: var(--primary-color);
+}
+
+.c_e_card a {
+    color: var(--primary-color);
+}
 
 
 
 
+/*ABOUT US PAGE*/
 
 
 
+.ab_ {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background: #faf9f6;
+    margin-top: 33px;
+    z-index: 99;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+}
 
+.about_section {
+    z-index: 99;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+}
+
+h3.ab_sec_heading {
+    font-size: 30px;
+    color: #000;
+    margin: 0px;
+}
+
+.ab_outer {
+    padding: 40px 0px 60px;
+}
+
+
+.teams_slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.teams_track {
+    display: flex;
+    transition: transform 0.6s ease;
+    margin: 10px 0px 20px 0px;
+}
+
+
+
+.team_card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.team_card h3 {
+    margin-top: 10px;
+    font-size: 26px;
+    color: var(--primary-color);
+}
+
+.ab_outer-teams {
+    background: #faf9f6;
+    padding: 60px 0px;
+}
+
+.teams_slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.team_card {
+    min-width: 22%;
+    padding: 18px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.team_card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.sl_btns {
+    display: flex;
+    justify-content: end;
+    gap: 18px;
+}
+
+.sl_btns button {
+    padding: 5px 14px;
+    background: #c9a267;
+    border: indianred;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.slider_dots {
+    display: flex;
+    justify-content: center;
+}
+
+.member_popup {
+    position: fixed;
+    background: #0000008a;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99999999999;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_content img {
+    width: 200px;
+    display: flex;
+    text-align: center;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.popup_content {
+    max-width: 600px;
+    margin: auto;
+    padding: 18px;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.p_img {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.popup_content h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.popup_content h4 {
+    text-align: center;
+    margin: 0px;
+}
+
+.popup_content p {
+    text-align: center;
+    color: var(--primary-yellow);
+}
+
+.pop_para {
+    margin-top: 20px;
+    height: 250px;
+    overflow-y: scroll;
+    line-height: 30px;
+}
+
+
+.videos_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 33px;
+}
+
+.video_card {
+    width: 100%;
+}
+
+.about_section p {
+    line-height: 32px;
+}
+
+.ab_outer-videos {
+    padding: 60px 0px;
+}
+
+.video_card iframe,
+video {
+    height: 100%;
+    border-radius: 8px;
+}
+
+.video-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.video-popup-content {
+    position: relative;
+    background: #000;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    z-index: 2;
+}
+
+.video-popup video,
+.video-popup iframe {
+    width: 100%;
+}
+
+.video-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    color: #fff;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+}
 
 
 
@@ -1054,6 +1531,22 @@ h3.global_pres_heading {
         gap: 12px;
 
     }
+    .header_2.active ul li a {
+    color: #000;
+    text-align: left;
+}
+
+    .ab_ {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .cont_s_first {
+
+        gap: 20px;
+
+    }
 
     .ph_grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1078,7 +1571,7 @@ h3.global_pres_heading {
     .header_2 {
         display: none;
         position: absolute;
-        top: 80px;
+        top: 0px;
         left: 0;
         width: 100%;
         background: white;
@@ -1091,7 +1584,7 @@ h3.global_pres_heading {
 
     .nav_wrapper {
         flex-direction: column;
-        align-items: center;
+        align-items: left;
         gap: 20px;
     }
 
@@ -1126,6 +1619,21 @@ h3.global_pres_heading {
 }
 
 @media only screen and (max-width:992px) {
+    .cont_s_first {
+        grid-template-columns: 40% 1fr;
+
+    }
+    
+    .team_card {
+  
+    min-width: 25%;
+   
+}
+.videos_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
     .com_grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1140,37 +1648,39 @@ h3.global_pres_heading {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
+
     .tabs_wrapper {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-}
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
 
-.tabs img {
-    width: 100%;
-    height: 100%;
-}
-.inner_responsive {
-    display: block;
-}
+    .tabs img {
+        width: 100%;
+        height: 100%;
+    }
 
-.content_wrapper {
-    border-radius: 8px;
-    padding: 0px;
-    border-radius: 0px;
-    margin-top: 0px;
-    border: 1px solid #ffffff5e;
-    padding: 12px;
-    margin-top: 14px;
-}
+    .inner_responsive {
+        display: block;
+    }
 
-.inner_responsive {
-    padding: 12px;
-    background: #c9a267;
-}
+    .content_wrapper {
+        border-radius: 8px;
+        padding: 0px;
+        border-radius: 0px;
+        margin-top: 0px;
+        border: 1px solid #ffffff5e;
+        padding: 12px;
+        margin-top: 14px;
+    }
 
-.tabs.active {
-    filter: invert(1);
-}
+    .inner_responsive {
+        padding: 12px;
+        background: #c9a267;
+    }
+
+    .tabs.active {
+        filter: invert(1);
+    }
 
     .inner_resp {
         display: block;
@@ -1182,13 +1692,35 @@ h3.global_pres_heading {
         margin-top: 20px;
     }
 
+    .number_wrapper {
+
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+    }
+
+    .c_address_wrapper {
+
+        gap: 20px;
+
+    }
+
 
 }
 
 @media only screen and (max-width:768px) {
+    .team_card {
+        min-width: 48%;
+    }
+    .cont_s_first {
+        grid-template-columns: 1fr;
+
+    }
+
     .slider_heading h3 {
         font-size: 50px;
     }
+
     .ab_wrapper {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1232,7 +1764,23 @@ h3.global_pres_heading {
 }
 
 @media only screen and (max-width:600px) {
+    .videos_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+.ab_ {
+        grid-template-columns: 1fr;
+    }
+    .number_wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
+    .c_address_wrapper {
+
+        grid-template-columns: 1fr;
+
+    }
 
     .ph_grid {
         grid-template-columns: 1fr;
@@ -1259,9 +1807,33 @@ h3.global_pres_heading {
 }
 
 @media only screen and (max-width:480px) {
+        .team_card {
+        min-width: 100%;
+    }
     .section_m_heading {
         font-size: 24px;
         margin: 0px;
+    }
+    h3.ab_sec_heading {
+     
+    font-size: 22px;
+}
+.team_card h3 {
+    font-size: 22px;
+}
+
+    .map_wrapper {
+        height: 250px !important;
+    }
+
+    .address_w h4 {
+
+        font-size: 22px;
+    }
+
+    .con_right h2 {
+        font-size: 22px;
+        margin: 0px 0px 16px;
     }
 
     .global_button {
