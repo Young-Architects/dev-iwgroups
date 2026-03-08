@@ -184,3 +184,16 @@ export interface AddressProps {
     address?: AddressItem[]
   }
 }
+
+// teams videos
+
+export interface TeamVideo {
+  video?: string
+  video_link?: string
+}
+
+export interface VideosProps {
+  result?: {
+    team_members_videos?: TeamVideo[]
+  }
+}

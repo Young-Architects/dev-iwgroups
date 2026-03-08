@@ -1,17 +1,17 @@
 'use client'
 
+import { TeamVideo, VideosProps } from '@/types/wordpress'
 import React, { useState } from 'react'
 
-function Videos({ result }) {
+function Videos({ result }: VideosProps) {
 
-    const [activeVideo, setActiveVideo] = useState(null)
-
+    const [activeVideo, setActiveVideo] = useState<TeamVideo | null>(null)
     return (
         <>
 
             <div className="videos_wrapper">
 
-                {result?.team_members_videos?.map((e, i) => {
+                {result?.team_members_videos?.map((e, i: number) => {
 
                     const youtubeId = e?.video_link?.split('/').pop()
 
