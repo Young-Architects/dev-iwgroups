@@ -4,8 +4,7 @@ import { fetchPageBySlug } from '@/lib/wordpress';
 import React, { useEffect, useState } from 'react'
 import Form from './form';
 import Phone from './phone';
-import dynamic from 'next/dynamic';
-const Address = dynamic(() => import('./address'), { ssr: false })
+import Address from './address';
 
 function Contact() {
       const slug=SLUG[0]
