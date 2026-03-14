@@ -25,9 +25,7 @@ function Footer() {
                                     <li className='nav-link-f'>
                                         <Link href='/contact-us'>Contact Us</Link>
                                     </li>
-                                    <li className='nav-link-f'>
-                                        <Link href='/'>Choose Your Solution</Link>
-                                    </li>
+                                   
 
                                 </ul>
                             </div>
