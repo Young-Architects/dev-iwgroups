@@ -1,83 +1,116 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 
-import { fetchPageBySlug } from '@/lib/wordpress';
-import HomeSlider from './slider';
-import About from './about';
-import GlobalPpresense from './global-presense';
-import CommunityEngagement from './community-engagement';
-import InnerworkGroups from './innerwork';
-import OurPhilosophy from './our-philosophy';
-
+import { fetchPageBySlug } from '@/lib/wordpress'
+import HomeSlider from './slider'
+import About from './about'
+import GlobalPpresense from './global-presense'
+import CommunityEngagement from './community-engagement'
+import InnerworkGroups from './innerwork'
+import OurPhilosophy from './our-philosophy'
+import { PageLoader } from '@/common/loader'
+import ErrorState from '@/common/error'
+import { SLUG } from '@/constant/constant'
 
 function Homepage() {
-    const [data, setData] = useState(null);
-    useEffect(() => {
-        const fetchHomePage = async () => {
-            const result = await fetchPageBySlug('home');
-            setData(result);
-        };
 
-        fetchHomePage();
-    }, []);
+  const [data, setData] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+    const slug = SLUG[1]
 
+  const loadHomePage = async () => {
 
+    try {
 
+      setLoading(true)
+      setError(false)
 
-    //@ts-expect-error ignore error
-    const slider = data?.acf?.slider ?? [];
-    //@ts-expect-error ignore error
-    const about = data?.acf ?? {};
-    //@ts-expect-error ignore error
-    const our_philosophy = data?.acf ?? [];
-    //@ts-expect-error ignore error
-    const global_pres = data?.acf ?? [];
-    //@ts-expect-error ignore error
-    const com_pres = data?.acf ?? [];
-    //@ts-expect-error ignore error
-    const philosophy = data?.acf ?? [];
+      const result = await fetchPageBySlug(slug)
 
+      if (!result) {
+        throw new Error('No data')
+      }
 
-    // console.log(`data`)
-    // console.log(data)
+      setData(result)
 
-    return (
-        <>
-            <HomeSlider slider={slider} />
-            <div className="about_outer">
-                <div className="inner_section">
-                    <About about={about} />
-                </div>
-            </div>
+    } catch (err) {
 
-            <div className="our_phil_outer">
-                <div className="inner_section">
-                    <InnerworkGroups our_philosophy={our_philosophy} />
-                </div>
-            </div>
+      console.error(err)
+      setError(true)
 
-            <div className="commu_eng_outer">
-                <div className="inner_section">
-                    <CommunityEngagement com_pres={com_pres} />
-                </div>
-            </div>
+    } finally {
 
-            <div className="our_phil_outer">
-                <div className="inner_section">
-                    <OurPhilosophy philosophy={philosophy} />
-                </div>
-            </div>
+      setLoading(false)
 
-            <div className="our_global_outer">
-                <div className="inner_section">
-                    <GlobalPpresense global_pres={global_pres} />
-                </div>
-            </div>
+    }
+
+  }
+
+  useEffect(() => {
+    loadHomePage()
+  }, [])
 
 
 
-        </>
-    )
+ 
+
+  if (loading) {
+    return <PageLoader />
+  }
+
+ 
+
+if (error) {
+  return <ErrorState refetch={loadHomePage} />
+}
+
+
+
+  const slider = data?.acf?.slider ?? []
+  const about = data?.acf ?? {}
+  const our_philosophy = data?.acf ?? []
+  const global_pres = data?.acf ?? []
+  const com_pres = data?.acf ?? []
+  const philosophy = data?.acf ?? []
+
+
+  return (
+    <>
+      <HomeSlider slider={slider} />
+
+      <div className="about_outer">
+        <div className="inner_section">
+          <About about={about} />
+        </div>
+      </div>
+
+      <div className="our_phil_outer">
+        <div className="inner_section">
+          <InnerworkGroups our_philosophy={our_philosophy} />
+        </div>
+      </div>
+
+      <div className="commu_eng_outer">
+        <div className="inner_section">
+          <CommunityEngagement com_pres={com_pres} />
+        </div>
+      </div>
+
+      <div className="our_phil_outer">
+        <div className="inner_section">
+          <OurPhilosophy philosophy={philosophy} />
+        </div>
+      </div>
+
+      <div className="our_global_outer">
+        <div className="inner_section">
+          <GlobalPpresense global_pres={global_pres} />
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Homepage

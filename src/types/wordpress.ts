@@ -197,3 +197,41 @@ export interface VideosProps {
     team_members_videos?: TeamVideo[]
   }
 }
+
+// faqs types
+
+export type FaqItem = {
+  question: string
+  answer: string
+}
+
+export type FaqsProps = {
+  faqs: FaqItem[]
+}
+
+// services card types
+
+export type CardItem = {
+  image: string
+  heading: string
+  description: string
+  link: string
+}
+
+export type ServiceCardProps = {
+  card: CardItem[]
+}
+
+// service testimonials
+
+export type TestimonialItem = {
+  image: string
+  name: string
+  designation: string
+  place: string
+  about_member: string
+}
+
+export type ServiceTestimonialsProps = {
+  testimonials: TestimonialItem[]
+}

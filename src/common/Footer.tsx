@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+ 
 
 function Footer() {
     return (
@@ -10,7 +10,7 @@ function Footer() {
                         <div className="main_footer_first">
                             <div className="footer_1">
                                 <div className="logo">
-                                    <img src="./Logo.png" alt="logo" />
+                                    <img src="/Logo.png" alt="logo" />
                                 </div>
                             </div>
                             <div className="footer_2">
@@ -72,22 +72,22 @@ function Footer() {
                                 <div className="f_right_section">
                                     <div className="social_links">
                                         <Link href='/'>
-                                            <img src="./images/facebook.png" alt="facebook" />
+                                            <img src="/images/facebook.png" alt="facebook" />
                                         </Link>
                                     </div>
                                     <div className="social_links">
                                         <Link href='/'>
-                                            <img src="./images/twitter.png" alt="twitter" />
+                                            <img src="/images/twitter.png" alt="twitter" />
                                         </Link>
                                     </div>
                                     <div className="social_links">
                                         <Link href='/'>
-                                            <img src="./images/youtube.png" alt="youtube" />
+                                            <img src="/images/youtube.png" alt="youtube" />
                                         </Link>
                                     </div>
                                     <div className="social_links">
                                         <Link href='/'>
-                                            <img src="./images/linkedin.png" alt="linkedin" />
+                                            <img src="/images/linkedin.png" alt="linkedin" />
                                         </Link>
                                     </div>
 

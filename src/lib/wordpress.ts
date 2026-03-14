@@ -46,3 +46,4 @@ export const fetchIndustryMenu = async () => {
     return null;
   }
 };
+ 

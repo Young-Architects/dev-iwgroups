@@ -10,13 +10,15 @@ import { FiPhone, FiMail, FiChevronDown } from "react-icons/fi"
 function Header() {
 
 
+
+
   const [data, setData] = useState<IndustryResponse | null>(null);
   const [industryOpen, setIndustryOpen] = useState(false)
   const menuRef = useRef<HTMLLIElement | null>(null)
   useEffect(() => {
     const fetchHomePage = async () => {
       const result = await fetchIndustryMenu();
-      console.log(result)
+    
       setData(result);
     };
 
@@ -42,8 +44,7 @@ function Header() {
 
 
 
-  console.log(`data`)
-  console.log(data)
+
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeHeader, setActiveHeader] = useState(false)
@@ -79,6 +80,45 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
 
   }, [])
+
+  const industriesMenu = [
+    {
+      menu_name: "Innerwork Advisors LLP",
+      children: [
+        {
+          menu_name: "Innerwork Advisors LLP",
+          menu_link: "innerwork-advisors-llp"
+        }
+      ]
+    },
+    {
+      menu_name: "Innerwork Financial & Accounting Advisors PVT LTD",
+      children: [
+        {
+          menu_name: "Innerwork Financial & Accounting Advisors PVT LTD",
+          menu_link: "innerwork-financial-accounting-advisors-pvt-ltd"
+        }
+      ]
+    },
+    {
+      menu_name: "Innerwork Legal Services",
+      children: [
+        {
+          menu_name: "Innerwork Legal Services",
+          menu_link: "innerwork-legal-services"
+        }
+      ]
+    },
+    {
+      menu_name: "Innerwork Advisors Limited UK",
+      children: [
+        {
+          menu_name: "Innerwork Advisors Limited UK",
+          menu_link: "innerwork-advisors-limited-uk"
+        }
+      ]
+    }
+  ]
 
   return (
     <>
@@ -136,7 +176,7 @@ function Header() {
                         onClick={() => setIndustryOpen(!industryOpen)}
                       >
 
-                        <Link href="/industries">Industries</Link>
+                        <Link href="/industries" style={{ pointerEvents: 'none' }}>Industries</Link>
 
                         <FiChevronDown
                           className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
@@ -148,7 +188,7 @@ function Header() {
 
                         <div className="sub_menu_wrapper">
 
-                          {data?.industries_menu?.map((e, i) => (
+                          {industriesMenu.map((e, i) => (
                             <ul key={i} className="sub_menu">
 
                               <li className="submenu_title">
@@ -157,9 +197,12 @@ function Header() {
 
                               {e?.children?.map((child, index) => (
                                 <li key={index} className="sub_child-list">
-                                  <a href={child?.menu_link} target="_blank">
+                                  <Link
+                                    href={`/services/${child?.menu_link}`}
+                                    onClick={() => setIndustryOpen(false)}
+                                  >
                                     {child?.menu_name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
 
@@ -173,7 +216,7 @@ function Header() {
                     </li>
 
                     <li><Link href='/about-us'>About Us</Link></li>
-                    <li><Link href='/services'>Services</Link></li>
+
 
                     <li><Link href='/contact-us'>Contact Us</Link></li>
                   </ul>
