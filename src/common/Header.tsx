@@ -2,35 +2,47 @@
 
 import { fetchIndustryMenu } from '@/lib/wordpress'
 import { IndustryResponse } from '@/types/wordpress'
-import { ul } from 'framer-motion/client'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
-import { FiPhone, FiMail, FiChevronDown } from "react-icons/fi"
+import { FiPhone, FiMail, FiChevronDown, FiX } from "react-icons/fi"
 
 function Header() {
 
+  const [data, setData] = useState<IndustryResponse | null>(null)
 
-
-
-  const [data, setData] = useState<IndustryResponse | null>(null);
   const [industryOpen, setIndustryOpen] = useState(false)
   const menuRef = useRef<HTMLLIElement | null>(null)
-  useEffect(() => {
-    const fetchHomePage = async () => {
-      const result = await fetchIndustryMenu();
-    
-      setData(result);
-    };
 
-    fetchHomePage();
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const [activeHeader, setActiveHeader] = useState(false)
+  const [hideHeader, setHideHeader] = useState(false)
+
+  const lastScrollY = useRef(0)
+
+
+  useEffect(() => {
+
+    const fetchHomePage = async () => {
+      const result = await fetchIndustryMenu()
+      setData(result)
+    }
+
+    fetchHomePage()
+
+  }, [])
+
+
+ 
 
   useEffect(() => {
 
     const handleClickOutside = (event: MouseEvent) => {
+
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIndustryOpen(false)
       }
+
     }
 
     document.addEventListener("mousedown", handleClickOutside)
@@ -43,14 +55,7 @@ function Header() {
 
 
 
-
-
-
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [activeHeader, setActiveHeader] = useState(false)
-  const [hideHeader, setHideHeader] = useState(false)
-
-  const lastScrollY = useRef(0)
+   
 
   useEffect(() => {
 
@@ -59,6 +64,7 @@ function Header() {
       const currentScroll = window.scrollY
 
       if (currentScroll > 150) {
+
         setActiveHeader(true)
 
         if (currentScroll > lastScrollY.current) {
@@ -68,11 +74,14 @@ function Header() {
         }
 
       } else {
+
         setActiveHeader(false)
         setHideHeader(false)
+
       }
 
       lastScrollY.current = currentScroll
+
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -80,6 +89,8 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
 
   }, [])
+
+
 
   const industriesMenu = [
     {
@@ -120,124 +131,196 @@ function Header() {
     }
   ]
 
+
   return (
-    <>
 
-      <div className={`main_header_outer ${activeHeader ? "active-header" : ""} ${hideHeader ? "hide-header" : ""}`}>
+    <div className={`main_header_outer ${activeHeader ? "active-header" : ""} ${hideHeader ? "hide-header" : ""}`}>
 
-        <div className="outer_section top_bar-header">
-          <div className="inner_section">
-            <div className="section_wrapper">
-              <div className="top_bar">
+    
 
-                <div className="part_1">
-                  <a href="tel:+9073672051">
-                    <FiPhone className="top_icon" />
-                    9073672051
-                  </a>
-                </div>
+      <div className="outer_section top_bar-header">
 
-                <div className="part_2">
-                  <p>Welcome to Innerwork Advisors LLP</p>
-                </div>
+        <div className="inner_section">
 
-                <div className="part_3">
-                  <a href="mailto:info@innerworkadvisorsllp.com">
-                    <FiMail className="top_icon" />
-                    info@innerworkadvisorsllp.com
-                  </a>
-                </div>
+          <div className="section_wrapper">
 
+            <div className="top_bar">
+
+              <div className="part_1">
+                <a href="tel:+9073672051">
+                  <FiPhone className="top_icon" />
+                  9073672051
+                </a>
               </div>
-            </div>
-          </div>
-        </div>
 
+              <div className="part_2">
+                <p>Welcome to Innerwork Advisors LLP</p>
+              </div>
 
-        <div className="outer_section main_header">
-          <div className="inner_section">
-            <div className="section_wrapper">
-
-              <div className="header">
-
-                <div className="header_1">
-                  <Link href='/'>
-                    <img src="/Logo.png" alt="logo" />
-                  </Link>
-                </div>
-
-                <div className={`header_2 ${menuOpen ? "active" : ""}`}>
-                  <ul className="nav_wrapper">
-                    <li><Link href='/'>Home</Link></li>
-                    <li className="industry_menu" ref={menuRef}>
-
-                      <div
-                        className="menu_link"
-                        onClick={() => setIndustryOpen(!industryOpen)}
-                      >
-
-                        <Link href="/industries" style={{ pointerEvents: 'none' }}>Industries</Link>
-
-                        <FiChevronDown
-                          className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
-                        />
-
-                      </div>
-
-                      {industryOpen && (
-
-                        <div className="sub_menu_wrapper">
-
-                          {industriesMenu.map((e, i) => (
-                            <ul key={i} className="sub_menu">
-
-                              <li className="submenu_title">
-                                {e?.menu_name}
-                              </li>
-
-                              {e?.children?.map((child, index) => (
-                                <li key={index} className="sub_child-list">
-                                  <Link
-                                    href={`/services/${child?.menu_link}`}
-                                    onClick={() => setIndustryOpen(false)}
-                                  >
-                                    {child?.menu_name}
-                                  </Link>
-                                </li>
-                              ))}
-
-                            </ul>
-                          ))}
-
-                        </div>
-
-                      )}
-
-                    </li>
-
-                    <li><Link href='/about-us'>About Us</Link></li>
-
-
-                    <li><Link href='/contact-us'>Contact Us</Link></li>
-                  </ul>
-                </div>
-
-                <div
-                  className="hamburger"
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  ☰
-                </div>
-
+              <div className="part_3">
+                <a href="mailto:info@innerworkadvisorsllp.com">
+                  <FiMail className="top_icon" />
+                  info@innerworkadvisorsllp.com
+                </a>
               </div>
 
             </div>
+
           </div>
+
         </div>
 
       </div>
 
-    </>
+
+
+       
+
+      <div className="outer_section main_header">
+
+        <div className="inner_section">
+
+          <div className="section_wrapper">
+
+            <div className="header">
+
+             
+
+              <div className="header_1">
+                <Link href="/">
+                  <img src="/Logo.png" alt="logo" />
+                </Link>
+              </div>
+
+
+ 
+
+              <div className={`header_2 ${menuOpen ? "active" : ""}`}>
+
+              
+
+                <div
+                  className="menu_close"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <FiX />
+                </div>
+
+
+                <ul className="nav_wrapper">
+
+                  <li>
+                    <Link href="/" onClick={() => setMenuOpen(false)}>
+                      Home
+                    </Link>
+                  </li>
+
+
+
+                  <li className="industry_menu" ref={menuRef}>
+
+                    <div
+                      className="menu_link"
+                      onClick={() => setIndustryOpen(!industryOpen)}
+                    >
+
+                      <Link href="/industries" style={{ pointerEvents: 'none' }}>
+                        Industries
+                      </Link>
+
+                      
+
+                      <FiChevronDown
+                        className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
+                      />
+
+                    </div>
+
+
+
+                    {industryOpen && (
+
+                      <div className="sub_menu_wrapper">
+
+                        {industriesMenu.map((e, i) => (
+
+                          <ul key={i} className="sub_menu">
+
+                            <li className="submenu_title">
+                              {e.menu_name}
+                            </li>
+
+                            {e.children.map((child, index) => (
+
+                              <li key={index} className="sub_child-list">
+
+                                <Link
+                                  href={`/services/${child.menu_link}`}
+                                  onClick={() => {
+                                    setIndustryOpen(false)
+                                    setMenuOpen(false)
+                                  }}
+                                >
+                                  {child.menu_name}
+                                </Link>
+
+                              </li>
+
+                            ))}
+
+                          </ul>
+
+                        ))}
+
+                      </div>
+
+                    )}
+
+                  </li>
+
+
+
+                  <li>
+                    <Link href="/about-us" onClick={() => setMenuOpen(false)}>
+                      About Us
+                    </Link>
+                  </li>
+
+
+
+                  <li>
+                    <Link href="/contact-us" onClick={() => setMenuOpen(false)}>
+                      Contact Us
+                    </Link>
+                  </li>
+
+                </ul>
+
+              </div>
+
+
+
+             
+
+              <div
+                className="hamburger"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                ☰
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   )
 }
 

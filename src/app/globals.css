@@ -200,7 +200,10 @@ p {
 
 
 /*HEADER CSS*/
- 
+ .menu_close{
+display:none;
+cursor: pointer; 
+}
 
 .industry_menu{
 position:relative;
@@ -246,7 +249,7 @@ transform:rotate(180deg);
     display: grid;
     position: absolute;
     top: 48px;
-    left: 0;
+    left: -85px;
     right: 0;
     box-shadow: 0 15px 50px 1px #0000001a;
     border: 1px solid #c9a2673d;
@@ -1782,6 +1785,17 @@ transform:translateY(0px);
 
 /*MEDIA QUERIES*/
 
+@media only screen and (max-width:1500px){
+    .submenu_title {
+    font-size: 18px;
+    
+}
+li.sub_child-list a {
+    font-size: 16px;
+  
+}
+}
+
 @media only screen and (max-width:1240px) {
     .ab_right {
 
@@ -1791,7 +1805,22 @@ transform:translateY(0px);
     }
 }
 
+
+
 @media only screen and (max-width:1024px) {
+    .menu_close {
+   
+    display: block !important;
+    position: absolute;
+    right: 26px;
+    font-size: 26px;
+}
+.menu_close svg {
+    color: #c9a267;
+}
+    .main_header_outer.hide-header {
+    transform: translateY(0%);
+}
     .ab_wrapper {
         grid-template-columns: 30% 1fr;
         gap: 12px;
@@ -1844,15 +1873,59 @@ transform:translateY(0px);
         position: fixed;
         top: 0px;
         left: 0;
-        width: 100%;
+        width: 80%;
         background: white;
         padding: 20px;
-        height: 100%;
+        height: 100vh;
         z-index: 999999999;
     }
+    ul.nav_wrapper {
+        background-color: #fff;
+    
+    gap: 0px;
+    
+}
+ul.nav_wrapper li:not(:last-child) {
+    border-bottom: 1px solid #28436238;
+}
+ul.nav_wrapper li {
+    padding: 20px 0px;
+}
+ul.nav_wrapper li a {
+    color: var(--primary-color)!important;
+}
+
+
+    .sub_menu_wrapper {
+    background: var(--black-color);
+    
+    width: 100%;
+ padding: 0px;
+ background: transparent;
+ box-shadow: unset;
+ border: unset;
+    position: relative;
+    top: 12px;
+    left: 0;
+ 
+}
+.menu_link {
+    cursor: pointer;
+    
+    justify-content: space-between;
+}
+.menu_arrow {
+    color:var(--primary-color);
+    transition: all .3s;
+    font-size: 22px;
+}
+.sub_menu_wrapper ul li {
+padding: 5px 0px !important;
+        color: var(--black-color);}
 
     .header_2.active {
         display: block;
+        overflow-y: scroll;
     }
 
     .nav_wrapper {
@@ -1982,6 +2055,10 @@ transform:translateY(0px);
 }
 
 @media only screen and (max-width:768px) {
+    .error_content h2 {
+    margin: 0;
+    font-size: 40px;
+}
         .service_card {
     grid-template-columns: 1fr;
     gap: 20px;
