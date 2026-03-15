@@ -2227,6 +2227,15 @@ padding: 5px 0px !important;
 }
 
 @media only screen and (max-width:768px) {
+        .top_bar-header {
+    
+    display: none;
+}
+.slide {
+   
+    height: 610px;
+     
+}
     .error_content h2 {
     margin: 0;
     font-size: 40px;
@@ -2291,10 +2300,10 @@ padding: 5px 0px !important;
 }
 
 @media only screen and (max-width:600px) {
-    .top_bar-header {
-    
-    display: none;
+    .menu_settings {
+    padding: 0px;
 }
+
     .s_card_content h3 {
   
     line-height: 36px;
@@ -2342,6 +2351,23 @@ padding: 5px 0px !important;
 }
 
 @media only screen and (max-width:480px) {
+       .slider_content {
+
+        padding: 50px 18px;
+    }
+    .slider_content {
+    color: #fff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1150px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    position: relative;
+}
+
+  
         .team_card {
         min-width: 100%;
     }

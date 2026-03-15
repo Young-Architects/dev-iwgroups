@@ -19,7 +19,7 @@ function HomeSlider({ slider }: { slider: SliderItem[] }) {
 
         const interval = setInterval(() => {
             setCurrent((prev) => (prev + 1) % length);
-        }, 4500);
+        }, 45000000);
 
         return () => clearInterval(interval);
     }, [length]);
