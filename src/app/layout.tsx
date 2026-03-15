@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Layout from "@/common/Layout";
+import { Toaster } from "sonner";
 
 
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Toaster position="top-right"/>
         <Layout>
           {children}
         </Layout>

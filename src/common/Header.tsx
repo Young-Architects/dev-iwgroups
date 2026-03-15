@@ -1,12 +1,18 @@
 "use client"
 
 import { fetchIndustryMenu } from '@/lib/wordpress'
-import { IndustryResponse } from '@/types/wordpress'
+import { HeaderFooterData, IndustryResponse } from '@/types/wordpress'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 import { FiPhone, FiMail, FiChevronDown, FiX } from "react-icons/fi"
 
-function Header() {
+interface HeaderProps {
+  result?: HeaderFooterData
+}
+
+function Header({ result }:HeaderProps) {
+
+ 
 
   const [data, setData] = useState<IndustryResponse | null>(null)
 
@@ -33,7 +39,7 @@ function Header() {
   }, [])
 
 
- 
+
 
   useEffect(() => {
 
@@ -55,7 +61,7 @@ function Header() {
 
 
 
-   
+
 
   useEffect(() => {
 
@@ -136,7 +142,7 @@ function Header() {
 
     <div className={`main_header_outer ${activeHeader ? "active-header" : ""} ${hideHeader ? "hide-header" : ""}`}>
 
-    
+
 
       <div className="outer_section top_bar-header">
 
@@ -147,20 +153,22 @@ function Header() {
             <div className="top_bar">
 
               <div className="part_1">
-                <a href="tel:+9073672051">
+                <a href={`tel:${result?.phones?.[0] || '9073672051'}`}>
                   <FiPhone className="top_icon" />
-                  9073672051
+                  {result?.phones?.[0] || '9073672051'}
                 </a>
               </div>
 
               <div className="part_2">
-                <p>Welcome to Innerwork Advisors LLP</p>
+
+                <p> {result?.top_bar || 'Welcome to Innerwork Advisors LLP'}</p>
               </div>
 
               <div className="part_3">
-                <a href="mailto:info@innerworkadvisorsllp.com">
+                <a href={`mailto:${result?.emails?.[0] || 'info@innerworkadvisorsllp.com'}`}>
                   <FiMail className="top_icon" />
-                  info@innerworkadvisorsllp.com
+                  {result?.emails?.[0] || 'info@innerworkadvisorsllp.com'}
+
                 </a>
               </div>
 
@@ -174,7 +182,7 @@ function Header() {
 
 
 
-       
+
 
       <div className="outer_section main_header">
 
@@ -184,20 +192,20 @@ function Header() {
 
             <div className="header">
 
-             
+
 
               <div className="header_1">
                 <Link href="/">
-                  <img src="/Logo.png" alt="logo" />
+                  <img src={result?.header_logo || "/Logo.png"} alt="logo" />
                 </Link>
               </div>
 
 
- 
+
 
               <div className={`header_2 ${menuOpen ? "active" : ""}`}>
 
-              
+
 
                 <div
                   className="menu_close"
@@ -228,7 +236,7 @@ function Header() {
                         Industries
                       </Link>
 
-                      
+
 
                       <FiChevronDown
                         className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
@@ -300,7 +308,7 @@ function Header() {
 
 
 
-             
+
 
               <div
                 className="hamburger"

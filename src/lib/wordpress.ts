@@ -46,4 +46,33 @@ export const fetchIndustryMenu = async () => {
     return null;
   }
 };
+export const fetchHeaderFooter = async () => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/wp/v2/header-footer-settings?&acf_format=standard`,
+      { cache: 'no-store' }
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
+
+export const saveContactForm = async (userData:RequestInit) => {
+  try {
+    let data = await fetch(`${BASE_URL}/wp-json/contact-form-7/v1/contact-forms/153/feedback`, userData)
+    let response = await data.json()
+    return response
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
  
+
+   

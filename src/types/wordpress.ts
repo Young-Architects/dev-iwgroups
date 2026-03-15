@@ -135,6 +135,24 @@ export interface OurPhilosophyProps {
 
 // header types
 
+export interface SocialIcon {
+  icon: string
+  link: string
+}
+
+export interface HeaderFooterData {
+  header_logo?: string
+  footer_logo?: string
+  top_bar?: string
+
+  phones?: string[]
+  emails?: string[]
+  address?: string[]
+  copyright?: string[]
+
+  socialicons?: SocialIcon[]
+}
+
 export type IndustryChild = {
   menu_name: string
   menu_link: string
@@ -235,3 +253,21 @@ export type TestimonialItem = {
 export type ServiceTestimonialsProps = {
   testimonials: TestimonialItem[]
 }
+
+// contact form types
+
+export type UserType = {
+  yourname: string
+  youremail: string
+  phone: string
+  address: string
+  yourmessage: string
+}
+
+export type ErrorType = {
+  yourname: boolean
+  youremail: boolean
+  phone: boolean
+  address: boolean
+}
+
