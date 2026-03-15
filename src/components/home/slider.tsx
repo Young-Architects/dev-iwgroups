@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface SliderItem {
@@ -19,7 +20,7 @@ function HomeSlider({ slider }: { slider: SliderItem[] }) {
 
         const interval = setInterval(() => {
             setCurrent((prev) => (prev + 1) % length);
-        }, 45000000);
+        }, 4500);
 
         return () => clearInterval(interval);
     }, [length]);
@@ -61,8 +62,12 @@ function HomeSlider({ slider }: { slider: SliderItem[] }) {
                                 />
 
                                 <div className="global_button">
-                                    <button className='m_button'>Explore Our Companies</button>
-                                    <button className='m_button'>Contact Innerwork Group</button>
+                                    <button className='m_button'>
+                                        <Link href='/'>Explore Our Companies</Link>
+                                        </button>
+                                    <button className='m_button'>
+                                         <Link href='/contact-us'>Contact Innerwork Group</Link>
+                                        </button>
 
                                 </div>
 
