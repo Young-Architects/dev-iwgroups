@@ -63,6 +63,7 @@ function About({ about }: AboutProps) {
                 {card?.list?.map((item, index) => (
 
                   <>
+                   <p>{item?.service}</p>
                     <Link
                       key={index}
                       href={`/services/${SERVICES[activeTab]}`}
