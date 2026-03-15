@@ -1,5 +1,4 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export const fetchPageBySlug = async (slug: string) => {
   try {
     const res = await fetch(
@@ -30,22 +29,6 @@ export const fetchTeamMembers = async () => {
     return null;
   }
 };
-export const fetchIndustryMenu = async () => {
-  try {
-    const res = await fetch(
-      `${BASE_URL}/wp-json/api/v2/industries?&acf_format=standard`,
-      { cache: 'no-store' }
-    );
-   
-    const data = await res.json();
-    if (data) {
-      return data[0] ?? null;
-    }
-  } catch (error) {
-    console.error('not able to fetch api');
-    return null;
-  }
-};
 export const fetchHeaderFooter = async () => {
   try {
     const res = await fetch(
@@ -62,7 +45,6 @@ export const fetchHeaderFooter = async () => {
     return null;
   }
 };
-
 export const saveContactForm = async (userData:RequestInit) => {
   try {
     let data = await fetch(`${BASE_URL}/wp-json/contact-form-7/v1/contact-forms/153/feedback`, userData)
