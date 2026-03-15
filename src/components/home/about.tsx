@@ -20,12 +20,13 @@ function About({ about }: AboutProps) {
         <h4 className='top_heading'>about us</h4>
         <h3 className='section_m_heading'>{about?.heading}</h3>
 
-        <div
-          className="slider_para"
+        <p
+          className="ab_para"
           dangerouslySetInnerHTML={{
             __html: about?.paragraph || '',
           }}
-        />
+        >
+        </p>
       </div>
 
 

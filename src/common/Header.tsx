@@ -1,7 +1,8 @@
 "use client"
 
-import { fetchIndustryMenu } from '@/lib/wordpress'
-import { HeaderFooterData, IndustryResponse } from '@/types/wordpress'
+import Menu from '@/components/services/menu'
+import { SLUG } from '@/constant/constant'
+import { HeaderFooterData } from '@/types/wordpress'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 import { FiPhone, FiMail, FiChevronDown, FiX } from "react-icons/fi"
@@ -10,13 +11,14 @@ interface HeaderProps {
   result?: HeaderFooterData
 }
 
-function Header({ result }:HeaderProps) {
-
- 
-
-  const [data, setData] = useState<IndustryResponse | null>(null)
+function Header({ result }: HeaderProps) {
 
   const [industryOpen, setIndustryOpen] = useState(false)
+
+  const [activeSlug, setActiveSlug] = useState<string | null>(null)
+
+  const [isMobile, setIsMobile] = useState(false)
+
   const menuRef = useRef<HTMLLIElement | null>(null)
 
   const [menuOpen, setMenuOpen] = useState(false)
@@ -27,19 +29,37 @@ function Header({ result }:HeaderProps) {
   const lastScrollY = useRef(0)
 
 
+ 
+
   useEffect(() => {
 
-    const fetchHomePage = async () => {
-      const result = await fetchIndustryMenu()
-      setData(result)
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth <= 991)
     }
 
-    fetchHomePage()
+    checkScreen()
+
+    window.addEventListener("resize", checkScreen)
+
+    return () => window.removeEventListener("resize", checkScreen)
 
   }, [])
 
 
+  
 
+  useEffect(() => {
+
+    if (!isMobile) {
+      setActiveSlug(SLUG[4])
+    } else {
+      setActiveSlug(null)
+    }
+
+  }, [isMobile])
+
+
+ 
 
   useEffect(() => {
 
@@ -60,8 +80,7 @@ function Header({ result }:HeaderProps) {
   }, [])
 
 
-
-
+ 
 
   useEffect(() => {
 
@@ -97,44 +116,35 @@ function Header({ result }:HeaderProps) {
   }, [])
 
 
+  
+
+  const handleIndustryClick = (slug: string) => {
+
+    if (isMobile) {
+
+      setActiveSlug(prev => prev === slug ? null : slug)
+
+    } else {
+
+      setActiveSlug(slug)
+
+    }
+
+  }
+
+
+ 
 
   const industriesMenu = [
-    {
-      menu_name: "Innerwork Advisors LLP",
-      children: [
-        {
-          menu_name: "Innerwork Advisors LLP",
-          menu_link: "innerwork-advisors-llp"
-        }
-      ]
-    },
-    {
-      menu_name: "Innerwork Financial & Accounting Advisors PVT LTD",
-      children: [
-        {
-          menu_name: "Innerwork Financial & Accounting Advisors PVT LTD",
-          menu_link: "innerwork-financial-accounting-advisors-pvt-ltd"
-        }
-      ]
-    },
-    {
-      menu_name: "Innerwork Legal Services",
-      children: [
-        {
-          menu_name: "Innerwork Legal Services",
-          menu_link: "innerwork-legal-services"
-        }
-      ]
-    },
-    {
-      menu_name: "Innerwork Advisors Limited UK",
-      children: [
-        {
-          menu_name: "Innerwork Advisors Limited UK",
-          menu_link: "innerwork-advisors-limited-uk"
-        }
-      ]
-    }
+
+    { menu_name: "Innerwork Advisors LLP", slugIndex: 4 },
+
+    { menu_name: "Innerwork Financial & Accounting Advisors PVT LTD", slugIndex: 5 },
+
+    { menu_name: "Innerwork Legal Services", slugIndex: 6 },
+
+    { menu_name: "Innerwork Advisors Limited UK", slugIndex: 3 }
+
   ]
 
 
@@ -142,12 +152,11 @@ function Header({ result }:HeaderProps) {
 
     <div className={`main_header_outer ${activeHeader ? "active-header" : ""} ${hideHeader ? "hide-header" : ""}`}>
 
-
+      
 
       <div className="outer_section top_bar-header">
 
         <div className="inner_section">
-
           <div className="section_wrapper">
 
             <div className="top_bar">
@@ -160,39 +169,35 @@ function Header({ result }:HeaderProps) {
               </div>
 
               <div className="part_2">
-
-                <p> {result?.top_bar || 'Welcome to Innerwork Advisors LLP'}</p>
+                <p>{result?.top_bar || 'Welcome to Innerwork Advisors LLP'}</p>
               </div>
 
               <div className="part_3">
                 <a href={`mailto:${result?.emails?.[0] || 'info@innerworkadvisorsllp.com'}`}>
                   <FiMail className="top_icon" />
                   {result?.emails?.[0] || 'info@innerworkadvisorsllp.com'}
-
                 </a>
               </div>
 
             </div>
 
           </div>
-
         </div>
 
       </div>
 
 
-
-
+   
 
       <div className="outer_section main_header">
 
         <div className="inner_section">
-
           <div className="section_wrapper">
 
             <div className="header">
 
 
+           
 
               <div className="header_1">
                 <Link href="/">
@@ -201,11 +206,9 @@ function Header({ result }:HeaderProps) {
               </div>
 
 
-
+            
 
               <div className={`header_2 ${menuOpen ? "active" : ""}`}>
-
-
 
                 <div
                   className="menu_close"
@@ -213,7 +216,6 @@ function Header({ result }:HeaderProps) {
                 >
                   <FiX />
                 </div>
-
 
                 <ul className="nav_wrapper">
 
@@ -224,6 +226,7 @@ function Header({ result }:HeaderProps) {
                   </li>
 
 
+                  {/* INDUSTRIES */}
 
                   <li className="industry_menu" ref={menuRef}>
 
@@ -231,54 +234,73 @@ function Header({ result }:HeaderProps) {
                       className="menu_link"
                       onClick={() => setIndustryOpen(!industryOpen)}
                     >
-
-                      <Link href="/industries" style={{ pointerEvents: 'none' }}>
-                        Industries
-                      </Link>
-
-
+                      <span style={{ color: "#fff", fontWeight:'600'}}>Industries</span>
 
                       <FiChevronDown
                         className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
                       />
-
                     </div>
-
 
 
                     {industryOpen && (
 
                       <div className="sub_menu_wrapper">
 
-                        {industriesMenu.map((e, i) => (
 
-                          <ul key={i} className="sub_menu">
+                        
 
-                            <li className="submenu_title">
-                              {e.menu_name}
-                            </li>
+                        <div className="left_menu menu_settings">
 
-                            {e.children.map((child, index) => (
+                          <ul>
 
-                              <li key={index} className="sub_child-list">
+                            {industriesMenu.map((item, i) => {
 
-                                <Link
-                                  href={`/services/${child.menu_link}`}
-                                  onClick={() => {
-                                    setIndustryOpen(false)
-                                    setMenuOpen(false)
-                                  }}
-                                >
-                                  {child.menu_name}
-                                </Link>
+                              const slug = SLUG[item.slugIndex]
+                              const isActive = activeSlug === slug
 
-                              </li>
+                              return (
 
-                            ))}
+                                <li key={i}>
+
+                                  <button
+                                    className={`industry_btn ${isActive ? "active" : ""}`}
+                                    onClick={() => handleIndustryClick(slug)}
+                                  >
+                                    {item.menu_name}
+                                  </button>
+
+                                 
+
+                                  {isMobile && isActive && (
+
+                                    <div className="mobile_services">
+                                      <Menu slug={slug} />
+                                    </div>
+
+                                  )}
+
+                                </li>
+
+                              )
+
+                            })}
 
                           </ul>
 
-                        ))}
+                        </div>
+
+
+                        
+
+                        {!isMobile && activeSlug && (
+
+                          <div className="right_menu menu_settings">
+
+                            <Menu slug={activeSlug} />
+
+                          </div>
+
+                        )}
 
                       </div>
 
@@ -287,14 +309,11 @@ function Header({ result }:HeaderProps) {
                   </li>
 
 
-
                   <li>
                     <Link href="/about-us" onClick={() => setMenuOpen(false)}>
                       About Us
                     </Link>
                   </li>
-
-
 
                   <li>
                     <Link href="/contact-us" onClick={() => setMenuOpen(false)}>
@@ -307,8 +326,7 @@ function Header({ result }:HeaderProps) {
               </div>
 
 
-
-
+        
 
               <div
                 className="hamburger"
@@ -317,12 +335,9 @@ function Header({ result }:HeaderProps) {
                 ☰
               </div>
 
-
-
             </div>
 
           </div>
-
         </div>
 
       </div>
@@ -330,6 +345,7 @@ function Header({ result }:HeaderProps) {
     </div>
 
   )
+
 }
 
 export default Header
