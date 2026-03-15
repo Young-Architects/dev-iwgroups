@@ -125,13 +125,12 @@ html{
     transition: all 0.3s ease;
     height: 250px;
     overflow-y: scroll;
-}
-
-.innerwork_card {
-    list-style: none;
-    width: 100%;
+       list-style: none;
+    width: 500px;
     cursor: pointer;
 }
+
+ 
 
 
 .card-bottom {
@@ -584,6 +583,25 @@ ul.footer_nav li a {
 
 
 /*HOMEPAGE CSS*/
+.inner_card_1 {
+    left: 100px!important;
+}
+
+.inner_card_3 {
+    left: -380px!important;
+}
+
+.inner_card_2 {
+    left: 380px!important;
+}
+
+.inner_card_4 {
+    left: -130px!important;
+}
+a.in_list {
+    color: var(--primary-yellow);
+    text-transform: capitalize;
+}
 .global_button {
     display: flex;
     justify-content: center;
@@ -1918,6 +1936,10 @@ li.sub_child-list a {
 
 
 @media only screen and (max-width:1024px) {
+    .i_c_p a {
+    color: var(--black-color);
+    text-transform: capitalize;
+}
     .menu_close {
    
     display: block !important;
