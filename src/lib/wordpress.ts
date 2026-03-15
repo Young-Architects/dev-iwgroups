@@ -3,7 +3,7 @@ export const fetchPageBySlug = async (slug: string) => {
   try {
     const res = await fetch(
       `${BASE_URL}/wp-json/wp/v2/pages?slug=${slug}&acf_format=standard`,
-      { cache: 'no-store' }
+      
     );
     const data = await res.json();
     if (data) {
@@ -18,7 +18,7 @@ export const fetchTeamMembers = async () => {
   try {
     const res = await fetch(
       `${BASE_URL}/wp-json/api/v2/our-teams?&acf_format=standard`,
-      { cache: 'no-store' }
+      
     );
     const data = await res.json();
     if (data) {
@@ -33,7 +33,7 @@ export const fetchHeaderFooter = async () => {
   try {
     const res = await fetch(
       `${BASE_URL}/wp-json/wp/v2/header-footer-settings?&acf_format=standard`,
-      { cache: 'no-store' }
+       
     );
    
     const data = await res.json();
