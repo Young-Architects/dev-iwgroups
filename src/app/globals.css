@@ -130,6 +130,11 @@ html{
     cursor: pointer;
 }
 
+.in_list span {
+    color: var(--primary-yellow);
+    text-decoration: underline;
+}
+
  
 
 
@@ -601,6 +606,8 @@ ul.footer_nav li a {
 a.in_list {
     color: var(--primary-yellow);
     text-transform: capitalize;
+    text-decoration: unset;
+    color:var(--black-color);
 }
 .global_button {
     display: flex;

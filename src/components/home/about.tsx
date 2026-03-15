@@ -67,7 +67,7 @@ function About({ about }: AboutProps) {
                       key={index}
                       href={`/services/${SERVICES[activeTab]}`}
                     >
-                      visit service page
+                      visit <span>{SERVICES[activeTab]}</span> service  page
                     </Link>
 
                   </>
@@ -136,7 +136,7 @@ function About({ about }: AboutProps) {
                             key={idx}
                             className="in_list"
                           >
-                            visit service page
+                            visit <span>{SERVICES[i]}</span> service  page
                           </Link>
                         </>
                       ))}
@@ -201,7 +201,7 @@ function About({ about }: AboutProps) {
                             href={`/services/${SERVICES[realIndex]}`}
                             className="in_list"
                           >
-                            visit service page
+                           visit <span>{SERVICES[realIndex]}</span> service  page
                           </Link>
                         </div>
                       ))}
