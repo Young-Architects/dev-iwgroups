@@ -7,7 +7,7 @@ function Phone({ result }:PhoneProps) {
   return (
     <>
   
-      <div className="email_wrapper">
+      {/* <div className="email_wrapper">
         {result?.email_address?.map((e, i:number) => {
           return (
             <div className="c_e_card" key={i}>
@@ -16,7 +16,7 @@ function Phone({ result }:PhoneProps) {
             </div>
           )
         })}
-      </div>
+      </div> */}
 
  
       <div className="number_wrapper">
