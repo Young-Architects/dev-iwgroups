@@ -234,6 +234,15 @@ html{
     list-style: none;
     padding: 0px;
 }
+button.industry_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+button.industry_btn svg {
+    display: none;
+}
+ 
 .left_menu ul {
     display: flex;
     flex-direction: column;
@@ -302,7 +311,7 @@ transform:rotate(180deg);
  
 .sub_menu_wrapper {
     background: var(--black-color);
-    z-index: 999;
+    z-index: 999999;
     border: 1px solid #c9a2673d;
     gap: 8px;
     width: 60%;
@@ -450,12 +459,12 @@ color:#fff;
 
 .header_2 {
     display: flex;
-    justify-content: end;
+    justify-content: center;
 }
 
 .header {
     display: grid;
-    grid-template-columns: 18% 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     align-items: center;
     position: relative;
@@ -588,6 +597,11 @@ ul.footer_nav li a {
 
 
 /*HOMEPAGE CSS*/
+ 
+.s_c_outer {
+    display: flex;
+    justify-content: center;
+}
 button.m_button a {
     color: var(--black-color);
     text-decoration: unset;
@@ -702,7 +716,7 @@ button.m_button {
 }
 
 .slider_content {
-    position: relative;
+    position: absolute;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -711,6 +725,9 @@ button.m_button {
     height: 100%;
     max-width: 1150px;
     margin: auto;
+    z-index: 999;
+    justify-content: center;
+    text-align: center;
 }
 
 .slider_heading h3 {
@@ -1933,6 +1950,11 @@ li.sub_child-list a {
 }
 
 @media only screen and (max-width:1240px) {
+    .header {
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    
+}
     .sub_menu_wrapper{
         width: 80%;
     }
@@ -1947,6 +1969,36 @@ li.sub_child-list a {
 
 
 @media only screen and (max-width:1024px) {
+     .top_bar .part_1 a,
+  .top_bar .part_3 a {
+    font-size: 0;  
+  }
+  .top_bar {
+    grid-template-columns: 10% 1fr 10%;
+    align-items: center;
+    gap: 20px;
+    display: grid;
+}
+
+  .top_bar .top_icon {
+    font-size: 16px; 
+  }
+    button.industry_btn svg {
+    display: block;
+}
+.industry_arrow {
+ 
+  transition: transform 0.3s ease;  
+}
+
+ 
+.industry_btn.active .industry_arrow {
+  transform: rotate(90deg);
+}
+
+button.industry_btn a span {
+    color: #fff!important;
+}
     .i_c_p a {
     color: var(--black-color);
     text-transform: capitalize;
@@ -2231,10 +2283,7 @@ padding: 5px 0px !important;
 }
 
 @media only screen and (max-width:768px) {
-        .top_bar-header {
-    
-    display: none;
-}
+ 
 .slide {
    
     height: 610px;
@@ -2277,12 +2326,7 @@ padding: 5px 0px !important;
         padding: 18px;
     }
 
-    .top_bar {
-        grid-template-columns: 1fr;
-        gap: 0px;
-        display: grid;
-        padding: 18px 0px;
-    }
+    
 
     .part_3 {
         justify-content: center;
@@ -2359,6 +2403,16 @@ padding: 5px 0px !important;
 
         padding: 50px 18px;
     }
+        .top_bar {
+        grid-template-columns: 10% 1fr 10%;
+     
+        
+    }
+    .top_bar p {
+    
+    line-height: 22px;
+    font-size: 14px;
+}
     .slider_content {
     color: #fff;
     flex-direction: column;

@@ -5,7 +5,7 @@ import { SLUG } from '@/constant/constant'
 import { HeaderFooterData } from '@/types/wordpress'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
-import { FiPhone, FiMail, FiChevronDown, FiX } from "react-icons/fi"
+import { FiPhone, FiMail, FiChevronDown, FiX, FiChevronRight } from "react-icons/fi"
 
 interface HeaderProps {
   result?: HeaderFooterData
@@ -14,13 +14,9 @@ interface HeaderProps {
 function Header({ result }: HeaderProps) {
 
   const [industryOpen, setIndustryOpen] = useState(false)
-
   const [activeSlug, setActiveSlug] = useState<string | null>(null)
-
   const [isMobile, setIsMobile] = useState(false)
-
   const menuRef = useRef<HTMLLIElement | null>(null)
-
   const [menuOpen, setMenuOpen] = useState(false)
 
   const [activeHeader, setActiveHeader] = useState(false)
@@ -28,68 +24,46 @@ function Header({ result }: HeaderProps) {
 
   const lastScrollY = useRef(0)
 
-
- 
-
   useEffect(() => {
-
     const checkScreen = () => {
       setIsMobile(window.innerWidth <= 991)
     }
 
     checkScreen()
-
     window.addEventListener("resize", checkScreen)
 
     return () => window.removeEventListener("resize", checkScreen)
-
   }, [])
 
 
-  
-
   useEffect(() => {
-
     if (!isMobile) {
       setActiveSlug(SLUG[4])
     } else {
       setActiveSlug(null)
     }
-
   }, [isMobile])
 
 
- 
-
   useEffect(() => {
-
     const handleClickOutside = (event: MouseEvent) => {
-
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIndustryOpen(false)
       }
-
     }
 
     document.addEventListener("mousedown", handleClickOutside)
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
-
   }, [])
 
 
- 
-
   useEffect(() => {
-
     const handleScroll = () => {
-
       const currentScroll = window.scrollY
 
       if (currentScroll > 150) {
-
         setActiveHeader(true)
 
         if (currentScroll > lastScrollY.current) {
@@ -99,52 +73,32 @@ function Header({ result }: HeaderProps) {
         }
 
       } else {
-
         setActiveHeader(false)
         setHideHeader(false)
-
       }
 
       lastScrollY.current = currentScroll
-
     }
 
     window.addEventListener("scroll", handleScroll)
-
     return () => window.removeEventListener("scroll", handleScroll)
-
   }, [])
 
 
-  
-
   const handleIndustryClick = (slug: string) => {
-
     if (isMobile) {
-
       setActiveSlug(prev => prev === slug ? null : slug)
-
     } else {
-
       setActiveSlug(slug)
-
     }
-
   }
 
 
- 
-
   const industriesMenu = [
-
     { menu_name: "Innerwork Advisors LLP", slugIndex: 4 },
-
     { menu_name: "Innerwork Financial & Accounting Advisors PVT LTD", slugIndex: 5 },
-
     { menu_name: "Innerwork Legal Services", slugIndex: 6 },
-
     { menu_name: "Innerwork Advisors Limited UK", slugIndex: 3 }
-
   ]
 
 
@@ -152,10 +106,8 @@ function Header({ result }: HeaderProps) {
 
     <div className={`main_header_outer ${activeHeader ? "active-header" : ""} ${hideHeader ? "hide-header" : ""}`}>
 
-      
 
       <div className="outer_section top_bar-header">
-
         <div className="inner_section">
           <div className="section_wrapper">
 
@@ -183,21 +135,16 @@ function Header({ result }: HeaderProps) {
 
           </div>
         </div>
-
       </div>
 
 
-   
 
       <div className="outer_section main_header">
-
         <div className="inner_section">
           <div className="section_wrapper">
 
             <div className="header">
 
-
-           
 
               <div className="header_1">
                 <Link href="/">
@@ -206,14 +153,10 @@ function Header({ result }: HeaderProps) {
               </div>
 
 
-            
 
               <div className={`header_2 ${menuOpen ? "active" : ""}`}>
 
-                <div
-                  className="menu_close"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <div className="menu_close" onClick={() => setMenuOpen(false)}>
                   <FiX />
                 </div>
 
@@ -226,15 +169,19 @@ function Header({ result }: HeaderProps) {
                   </li>
 
 
-                  {/* INDUSTRIES */}
 
-                  <li className="industry_menu" ref={menuRef}>
+                  <li
+                    className="industry_menu"
+                    ref={menuRef}
+                  >
 
                     <div
                       className="menu_link"
                       onClick={() => setIndustryOpen(!industryOpen)}
                     >
-                      <span style={{ color: "#fff", fontWeight:'600'}}>Industries</span>
+                      <span style={{ color: "#fff", fontWeight: '600' }}>
+                        Industries
+                      </span>
 
                       <FiChevronDown
                         className={`menu_arrow ${industryOpen ? "rotate" : ""}`}
@@ -246,11 +193,7 @@ function Header({ result }: HeaderProps) {
 
                       <div className="sub_menu_wrapper">
 
-
-                        
-
                         <div className="left_menu menu_settings">
-
                           <ul>
 
                             {industriesMenu.map((item, i) => {
@@ -259,47 +202,48 @@ function Header({ result }: HeaderProps) {
                               const isActive = activeSlug === slug
 
                               return (
-
-                                <li key={i}>
+                                <li
+                                  key={i}
+                                  onMouseEnter={() => !isMobile && setActiveSlug(slug)}
+                                >
 
                                   <button
                                     className={`industry_btn ${isActive ? "active" : ""}`}
                                     onClick={() => handleIndustryClick(slug)}
                                   >
-                                    {item.menu_name}
+                                    <Link
+                                      href={`/services/${slug}`}
+                                      onClick={() => {
+                                        setIndustryOpen(false)
+                                        setMenuOpen(false)
+                                      }}
+                                    >
+                                      <span className="industry_text">{item.menu_name}</span>
+
+                                    </Link>
+                                    <FiChevronRight className="industry_arrow" />
                                   </button>
 
-                                 
 
                                   {isMobile && isActive && (
-
                                     <div className="mobile_services">
                                       <Menu slug={slug} />
                                     </div>
-
                                   )}
 
                                 </li>
-
                               )
-
                             })}
 
                           </ul>
-
                         </div>
 
 
-                        
 
                         {!isMobile && activeSlug && (
-
                           <div className="right_menu menu_settings">
-
                             <Menu slug={activeSlug} />
-
                           </div>
-
                         )}
 
                       </div>
@@ -314,19 +258,26 @@ function Header({ result }: HeaderProps) {
                       About Us
                     </Link>
                   </li>
-
                   <li>
-                    <Link href="/contact-us" onClick={() => setMenuOpen(false)}>
-                      Contact Us
+                    <Link href="/blog" onClick={() => setMenuOpen(false)}>
+                      Blog
                     </Link>
                   </li>
+
+
 
                 </ul>
 
               </div>
 
+              <div className="header_3">
+                <button>
+                  <Link href='/contact-us'>contact us</Link>
 
-        
+                </button>
+              </div>
+
+
 
               <div
                 className="hamburger"
@@ -339,13 +290,11 @@ function Header({ result }: HeaderProps) {
 
           </div>
         </div>
-
       </div>
 
     </div>
 
   )
-
 }
 
 export default Header

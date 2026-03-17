@@ -69,6 +69,7 @@ if (error) {
 
 
   const slider = data?.acf?.slider ?? []
+   const sliderContent = data?.acf ?? []
   const about = data?.acf ?? {}
   const our_philosophy = data?.acf ?? []
   const global_pres = data?.acf ?? []
@@ -78,7 +79,7 @@ if (error) {
 
   return (
     <>
-      <HomeSlider slider={slider} />
+      <HomeSlider slider={slider} sliderContent={sliderContent}/>
 
       <div className="about_outer">
         <div className="inner_section">
