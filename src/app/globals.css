@@ -239,9 +239,7 @@ button.industry_btn {
     justify-content: space-between;
     align-items: center;
 }
-button.industry_btn svg {
-    display: none;
-}
+ 
  
 .left_menu ul {
     display: flex;
@@ -314,9 +312,9 @@ transform:rotate(180deg);
     z-index: 999999;
     border: 1px solid #c9a2673d;
     gap: 8px;
-    width: 60%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 40% 1fr;
+    grid-template-columns: 20% 1fr;
     gap:30px;
     align-items: top;
     position: fixed;
@@ -739,6 +737,29 @@ button.m_button {
 
 
 /*ABOUT US SECTION*/
+
+.y_of_exp {
+    position: absolute;
+    bottom: 144px;
+    background: #c9a267ab;
+    right: 0;
+    left: 0;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+.y_of_exp h3 {
+    color: #fff!important;
+    font-size: 22px!important;
+    margin: 0px !important;
+    font-weight: 500;
+}
+.y_of_exp h3 span {
+    font-size: 18px;
+}
 .inner_resp {
     display: none;
 }
@@ -1470,6 +1491,7 @@ h3.ab_sec_heading {
     padding: 18px;
     cursor: pointer;
     text-align: center;
+    position: relative;
 }
 
 .team_card img {
@@ -1632,6 +1654,7 @@ video {
 
 
 /*SERVICES PAGES*/
+
 
 .desc{
   max-height: 80px;

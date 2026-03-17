@@ -7,16 +7,7 @@ function Phone({ result }:PhoneProps) {
   return (
     <>
   
-      {/* <div className="email_wrapper">
-        {result?.email_address?.map((e, i:number) => {
-          return (
-            <div className="c_e_card" key={i}>
-              <FiMail className="icon" />
-              <a href={`mailto:${e?.email}`}>{e?.email}</a>
-            </div>
-          )
-        })}
-      </div> */}
+     
 
  
       <div className="number_wrapper">

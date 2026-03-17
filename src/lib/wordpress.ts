@@ -58,3 +58,23 @@ export const saveContactForm = async (userData:RequestInit) => {
  
 
    
+
+// SEO RELATED APIS
+
+
+export const fetchSeoData = async (slug: string) => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/rankmath/v1/getHead?url=${BASE_URL}/${slug}`,
+       
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};

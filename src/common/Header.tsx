@@ -221,7 +221,7 @@ function Header({ result }: HeaderProps) {
                                       <span className="industry_text">{item.menu_name}</span>
 
                                     </Link>
-                                    <FiChevronRight className="industry_arrow" />
+                                    <FiChevronRight className="industry_arrow" size={20}/>
                                   </button>
 
 
