@@ -15,3 +15,5 @@ export const SERVICES=[
     'innerwork-legal-services',
 
 ]
+
+export const BASE_URL = "https://dev.innerworkgroups.com";
