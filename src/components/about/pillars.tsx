@@ -135,8 +135,8 @@ function Pillars() {
     }
 
 
-    const gap = 20
-    const cardWidth = `calc((100% - ${(perView - 1) * gap}px) / ${perView})`
+    
+    const cardWidth = `calc((100% - ${(perView - 1)}px) / ${perView})`
 
     return (
         <>
@@ -160,7 +160,7 @@ function Pillars() {
                         style={{
                             transform: `translateX(-${current * (100 / perView)}%)`,
                             gridTemplateColumns: `repeat(${result.length}, ${cardWidth})`,
-                            gap: `${gap}px`
+                             
                         }}
                     >
                         {result.map((e: any, i: number) => (

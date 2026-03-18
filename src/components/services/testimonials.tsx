@@ -24,7 +24,7 @@ function Testimonials({ testimonials }: ServiceTestimonialsProps) {
 
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length)
-    }, 10000)
+    }, 4500)
 
     return () => clearInterval(timer)
   }, [testimonials, isPaused])

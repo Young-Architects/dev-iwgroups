@@ -2884,6 +2884,7 @@ p.p_counter {
 
     .top_bar {
         grid-template-columns: 10% 1fr 10%;
+        gap:4px;
 
 
     }
@@ -2903,7 +2904,7 @@ p.p_counter {
         height: 100%;
         margin: auto;
         display: flex;
-        position: relative;
+        position: absolute;
     }
 
 
