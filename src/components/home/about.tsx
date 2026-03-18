@@ -7,8 +7,7 @@ import { SERVICES } from "@/constant/constant"
 
 
 function About({ about }: AboutProps) {
-
-  console.log(about)
+ 
 
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
   const [clickedIndex, setClickedIndex] = useState<number | null>(null)
@@ -62,7 +61,7 @@ function About({ about }: AboutProps) {
               <div className="i_c_p">
                 {card?.list?.map((item, index) => (
 
-                  <>
+                  <div key={i}>
                    <p>{item?.service}</p>
                     <Link
                       key={index}
@@ -71,7 +70,7 @@ function About({ about }: AboutProps) {
                       visit <span>{SERVICES[activeTab]}</span> service  page
                     </Link>
 
-                  </>
+                  </div>
                 ))}
               </div>
 

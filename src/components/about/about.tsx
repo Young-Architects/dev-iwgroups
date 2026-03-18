@@ -7,6 +7,7 @@ import Teams from './teams'
 import Videos from './videos'
 import { PageLoader } from '@/common/loader'
 import ErrorState from '@/common/error'
+import Pillars from './pillars'
 
 function About() {
 
@@ -64,6 +65,8 @@ function About() {
 
   const result = data?.acf ?? {}
 
+  console.log(result)
+
 
 
   return (
@@ -99,6 +102,22 @@ function About() {
         </div>
       </div>
 
+
+   <div className="ab_outer-pillars">
+        <div className="inner_section">
+
+          <div className="ab_pillars">
+
+            <h4 className="top_heading">our pillars</h4>
+            <h3 className="section_m_heading">{result?.pillar_heading}</h3>
+            <p>{result?.pillar_paragraph}</p>
+
+            <Pillars />
+
+          </div>
+
+        </div>
+      </div>
 
 
       <div className="ab_outer-teams">

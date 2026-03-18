@@ -29,6 +29,21 @@ export const fetchTeamMembers = async () => {
     return null;
   }
 };
+export const fetchPillars = async () => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/api/v2/our-pillers?&acf_format=standard`,
+      
+    );
+    const data = await res.json();
+    if (data) {
+      return data ?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
 export const fetchHeaderFooter = async () => {
   try {
     const res = await fetch(
@@ -45,6 +60,39 @@ export const fetchHeaderFooter = async () => {
     return null;
   }
 };
+export const fetchAllBlogs = async () => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/wp/v2/posts?&acf_format=standard`,
+       
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
+export const fetchSingleBlog = async (slug:string) => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/wp/v2/posts?slug=${slug}&acf_format=standard`,
+       
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
+
 export const saveContactForm = async (userData:RequestInit) => {
   try {
     let data = await fetch(`${BASE_URL}/wp-json/contact-form-7/v1/contact-forms/153/feedback`, userData)

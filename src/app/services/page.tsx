@@ -13,6 +13,6 @@ export default async function ServicesPage() {
     redirect(`/services/${lastSlug}`)
   }
 
-  // fallback
+ 
   redirect("/services/innerwork-financial-accounting-advisors-pvt-ltd")
 }

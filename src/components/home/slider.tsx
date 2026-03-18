@@ -19,7 +19,7 @@ function HomeSlider({
   sliderContent?: SliderContent;
 }) {
 
-    console.log(sliderContent)
+    
     const [current, setCurrent] = useState(0);
 
     const length = slider?.length || 0;

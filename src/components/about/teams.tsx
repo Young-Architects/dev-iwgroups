@@ -17,7 +17,7 @@ function Counter({
     if (!start) return
 
     let current = 0
-    const duration = 3000
+    const duration = 2000
     const increment = end / (duration / 16)
 
     const timer = setInterval(() => {
@@ -35,22 +35,24 @@ function Counter({
   }, [end, start])
 
   return (
-    <>
-      
-      <h3>{count}+  <span>{count === 1 ? 'year' : 'years'} of experience</span></h3> 
-    </>
+    <h3>
+      {count}+ <span>{count === 1 ? 'year' : 'years'} of experience</span>
+    </h3>
   )
 }
 
-function Teams() {
-
-  const [data, setData] = useState<any[]>([])
-  const [index, setIndex] = useState(0)
-  const [popup, setPopup] = useState<any | null>(null)
  
+function Teams() {
+  const [data, setData] = useState<any[]>([])
+  const [current, setCurrent] = useState(0)
+  const [perView, setPerView] = useState(4)
+  const [popup, setPopup] = useState<any | null>(null)
+  const [isPaused, setIsPaused] = useState(false)
+
   const [startCount, setStartCount] = useState(false)
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
+ 
   useEffect(() => {
     const load = async () => {
       const result = await fetchTeamMembers()
@@ -59,7 +61,35 @@ function Teams() {
     load()
   }, [])
 
-  
+ 
+  useEffect(() => {
+    const updateView = () => {
+      if (window.innerWidth < 600) setPerView(1)
+      else if (window.innerWidth < 1024) setPerView(2)
+      else setPerView(4)
+    }
+
+    updateView()
+    window.addEventListener('resize', updateView)
+
+    return () => window.removeEventListener('resize', updateView)
+  }, [])
+
+ 
+  useEffect(() => {
+    if (!data.length || isPaused) return
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => {
+        if (prev >= data.length - perView) return 0
+        return prev + 1
+      })
+    }, 4500)
+
+    return () => clearInterval(interval)
+  }, [data.length, perView, isPaused])
+
+ 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -81,34 +111,36 @@ function Teams() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!data.length) return
-
-    const timer = setInterval(() => {
-      nextSlide()
-    }, 500000000000)
-
-    return () => clearInterval(timer)
-
-  }, [data, index])
-
+  
   const nextSlide = () => {
-    setIndex((prev) => (prev + 1) % data.length)
+    if (current >= data.length - perView) {
+      setCurrent(0)
+    } else {
+      setCurrent(current + 1)
+    }
   }
 
   const prevSlide = () => {
-    setIndex((prev) => (prev - 1 + data.length) % data.length)
+    if (current <= 0) {
+      setCurrent(data.length - perView)
+    } else {
+      setCurrent(current - 1)
+    }
   }
 
-  const loopData = [...data, ...data]
-
-   
+ 
+  
+  const cardWidth = `calc((100% - ${(perView - 1)}px) / ${perView})`
 
   return (
     <>
-     
-      <div className="teams_slider" ref={sectionRef}>
-
+      <div
+        className="teams_slider"
+        ref={sectionRef}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+         
         <div className="sl_btns">
           <button className="slider_btn prev" onClick={prevSlide}>
             ‹
@@ -118,73 +150,61 @@ function Teams() {
           </button>
         </div>
 
+       
         <div className="teams_wrapper">
-
           <div
             className="teams_track"
             style={{
-              transform: `translateX(-${index * 25}%)`
+              transform: `translateX(-${current * (100 / perView)}%)`,
+              display: 'grid',
+              gridTemplateColumns: `repeat(${data.length}, ${cardWidth})`,
+             
+              transition: 'transform 0.5s ease'
             }}
           >
-
-            {loopData.map((member, i) => (
-
+            {data.map((member, i) => (
               <div
                 className="team_card"
                 key={i}
                 onClick={() => setPopup(member)}
               >
-
                 <img src={member?.member_image} />
 
-                <h3>{member?.member_name} </h3>
+                <h3>{member?.member_name}</h3>
 
-                 <div className="y_of_exp">
+                <div className="y_of_exp">
                   <Counter
                     end={Number(member?.member_year_enperience) || 0}
                     start={startCount}
                   />
-                 </div>
-               
-                 
+                </div>
 
                 <p>({member?.member_designation})</p>
-
               </div>
-
             ))}
-
           </div>
-
         </div>
-
       </div>
-
+ 
       <div className="slider_dots">
-
-        {data.map((_, i) => (
-
+        {Array.from({ length: data.length - perView + 1 }).map((_, i) => (
           <span
             key={i}
-            className={i === index ? 'dot active' : 'dot'}
-            onClick={() => setIndex(i)}
+            className={i === current ? 'dot active' : 'dot'}
+            onClick={() => setCurrent(i)}
           />
-
         ))}
-
       </div>
 
+   
       {popup && (
-
         <div className="member_popup">
-
           <div
             className="popup_overlay"
             onClick={() => setPopup(null)}
           />
 
           <div className="popup_content">
-
             <div className="p_img">
               <img src={popup.member_image} />
               <button
@@ -196,24 +216,18 @@ function Teams() {
             </div>
 
             <h2>{popup.member_name}</h2>
-
             <h4>({popup.member_designation})</h4>
-
             <p>{popup.member_description}</p>
 
             <div
-              className='pop_para'
+              className="pop_para"
               dangerouslySetInnerHTML={{
                 __html: popup.about_member
               }}
             />
-
           </div>
-
         </div>
-
       )}
-
     </>
   )
 }

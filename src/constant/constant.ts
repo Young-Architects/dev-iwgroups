@@ -17,3 +17,6 @@ export const SERVICES=[
 ]
 
 export const BASE_URL = "https://dev.innerworkgroups.com";
+
+
+export const LIMIT=9

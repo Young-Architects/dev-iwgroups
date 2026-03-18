@@ -271,3 +271,39 @@ export type ErrorType = {
   address: boolean
 }
 
+// blog types
+
+
+export interface BlogAcf {
+  image: string
+  heading: string
+  paragraph: string
+}
+
+export interface BlogItem {
+  id: number
+  slug: string
+  acf: BlogAcf
+}
+
+export type BlogResponse = BlogItem[]
+
+ 
+
+export interface GalleryItem {
+  image: string
+}
+
+export interface BlogSingleAcf {
+  overview: string
+  gallries: GalleryItem[]  
+}
+
+export interface BlogSingleItem {
+  id: number
+  slug: string
+  acf: BlogSingleAcf
+}
+
+export type BlogSingle = BlogSingleItem[]
+

@@ -2,11 +2,13 @@
 
 import { ServiceTestimonialsProps } from '@/types/wordpress'
 import { useEffect, useState } from 'react'
-
-function Testimonials({ testimonials }:ServiceTestimonialsProps) {
+import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa"
+function Testimonials({ testimonials }: ServiceTestimonialsProps) {
 
   const [index, setIndex] = useState(0)
-  const [popup, setPopup] = useState<any | null>(null)
+
+  const [isPaused, setIsPaused] = useState(false)
+
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % testimonials.length)
@@ -16,120 +18,85 @@ function Testimonials({ testimonials }:ServiceTestimonialsProps) {
     setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
-  useEffect(() => {
 
-    if (!testimonials?.length) return
+  useEffect(() => {
+    if (!testimonials?.length || isPaused) return
 
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
+    }, 10000)
 
     return () => clearInterval(timer)
-
-  }, [index, testimonials])
+  }, [testimonials, isPaused])
 
   if (!testimonials?.length) return null
-
-  const loopData = [...testimonials, ...testimonials]
+ 
 
   return (
     <>
-      <div className="teams_slider">
+      <div
+        className="ser_test_slider"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
 
-        <div className="sl_btns">
-          <button className="slider_btn prev" onClick={prevSlide}>‹</button>
-          <button className="slider_btn next" onClick={nextSlide}>›</button>
+
+        <div className="sl_btns" style={{ marginBottom: '20px' }}>
+          <button className="ser_test_prev" onClick={prevSlide}>‹</button>
+          <button className="ser_test_next" onClick={nextSlide}>›</button>
         </div>
 
-        <div className="teams_wrapper">
+
+        <div className="ser_test_wrapper">
 
           <div
-            className="teams_track"
+            className="ser_test_track"
             style={{
-              transform: `translateX(-${index * 25}%)`
+              transform: `translateX(-${index * 100}%)`,
+              display: 'flex',
+              transition: 'transform 0.5s ease'
             }}
           >
 
-            {loopData.map((member, i) => (
-
+            {testimonials.map((item, i) => (
               <div
-                className="team_card"
+                className="ser_test_card"
                 key={i}
-                onClick={() => setPopup(member)}
+
+                style={{ minWidth: '100%' }}
               >
 
-                <img src={member?.image} alt={member?.name} />
+                <img src={item?.image} alt={item?.name} />
 
-                <h3>{member?.name}</h3>
+                <h3>{item?.name} <span>({item?.designation})</span></h3>
 
-                <p>({member?.designation})</p>
+ 
+                <p className="ser_test_text">
+                  <FaQuoteLeft className="quote_icon left" />
+                  {item?.about_member}
+                  <FaQuoteRight className="quote_icon right" />
+                </p>
 
               </div>
-
             ))}
 
           </div>
 
         </div>
-
       </div>
 
 
-      <div className="slider_dots">
-
+      <div className="ser_test_dots">
         {testimonials.map((_, i) => (
-
           <span
             key={i}
-            className={i === index ? 'dot active' : 'dot'}
+            className={i === index ? 'ser_test_dot active' : 'ser_test_dot'}
             onClick={() => setIndex(i)}
           />
-
         ))}
-
       </div>
 
 
-      {popup && (
-
-        <div className="member_popup">
-
-          <div
-            className="popup_overlay"
-            onClick={() => setPopup(null)}
-          />
-
-          <div className="popup_content">
-
-            <div className="p_img">
-              <img src={popup.image} alt={popup.name} />
-
-              <button
-                className="close_btn"
-                onClick={() => setPopup(null)}
-              >
-                ✕
-              </button>
-            </div>
-
-            <h2>{popup.name}</h2>
-
-            <h4>({popup.designation})</h4>
-
-            <p>{popup.place}</p>
-
-            <div
-              className='pop_para'
-              dangerouslySetInnerHTML={{
-                __html: popup.about_member
-              }}
-            />
-
-          </div>
-
-        </div>
-
-      )}
 
     </>
   )

@@ -1,8 +1,11 @@
 import React from 'react'
+import Blogpage from './components/blogpage'
 
 function page() {
   return (
-    <div>page</div>
+    <>
+    <Blogpage/>
+    </>
   )
 }
 
