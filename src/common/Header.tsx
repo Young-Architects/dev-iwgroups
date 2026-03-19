@@ -84,7 +84,6 @@ function Header({ result }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-
   const handleIndustryClick = (slug: string) => {
     if (isMobile) {
       setActiveSlug(prev => prev === slug ? null : slug)
