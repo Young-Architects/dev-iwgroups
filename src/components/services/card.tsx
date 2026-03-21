@@ -27,39 +27,40 @@ function ServiceCard({ card }: ServiceCardProps) {
         return (
 
           <div className="s_card" key={i}>
+              <a href={e?.link} target="_blank">
 
             <div className="s_img">
               <img src={e?.image} alt="service_image" />
             </div>
 
-            <div className="s_content_wrapper">
-
-              <div className="s_card_content">
-
-                <h3>{e?.heading}</h3>
-
-                <p className={`desc ${isExpanded ? "open" : ""}`}>
-                  {e?.description}
-                </p>
-
-                <button
-                  className="read_more_btn"
-                  onClick={() => toggleReadMore(i)}
-                >
-                  {isExpanded ? "Read Less" : "Read More"}
-                </button>
-
-              </div>
-
-
-
-            </div>
-
-            <div className="s_action">
-              <a href={e?.link} target="_blank">
-                Visit {url[2]}
+            
               </a>
+
+            <div className="s_content_wrapper">
+                <div className="s_card_content">
+
+                  <h3>{e?.heading}</h3>
+
+                  <p className={`desc ${isExpanded ? "open" : ""}`}>
+                    {e?.description}
+                  </p>
+
+
+                  <button
+                    className="read_more_btn"
+                    onClick={() => toggleReadMore(i)}
+                  >
+                    {isExpanded ? "Read Less" : "Read More"}
+                  </button>
+                </div>
+
+
+
+
             </div>
+
+
+
 
           </div>
         )

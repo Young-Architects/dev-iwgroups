@@ -43,6 +43,8 @@ function Blogsingle({ slug }: { slug: string }) {
   const result = data ?? []
   const cleanSlug = slug.replace(/-/g, '')
 
+  console.log(data)
+
   return (
     <>
        
@@ -60,6 +62,13 @@ function Blogsingle({ slug }: { slug: string }) {
           {result?.map((e, i: number) => {
             return (
               <div className="b_inner_wrapper" key={i}>
+                
+
+                <div className="blog_top_img">
+                  <img src={e?.acf?.image} alt="img" />
+                </div>
+
+                
  
                 <div className="overview">
                   <div

@@ -343,11 +343,14 @@ button.industry_btn.active {
 
 .right_menu {
     padding: 20px 20px 20px 0px;
+    height: 250px;
+    overflow-y: scroll;
 }
 
 .service_nested {
-    height: 240px;
-    overflow-y: scroll;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   column-gap: 20px;
 }
 
 .service_nested ul li {
@@ -531,6 +534,10 @@ ul.nav_wrapper li a {
 
 
 /*FOOTER CSS*/
+
+.footer_2 {
+    margin-left: 60px;
+}
 
 .footer_outer {
     background: #284362;
@@ -1676,6 +1683,10 @@ video {
 
 
 /*SERVICES PAGES*/
+.s_card a {
+    text-decoration: none;
+    color: var(--black-color);
+}
 
 .ser_test_wrapper {
     overflow: hidden;
@@ -2044,6 +2055,12 @@ button.refresh_btn {
     display: flex;
     justify-content: center;
 }
+.blog_top_img img {
+    width: 100%;
+    border-radius: 6px;
+    height: 350px;
+    object-fit: cover;
+}
 
 .blog_pagination button {
     padding: 6px 12px;
@@ -2358,9 +2375,7 @@ p.p_counter {
 
     }
 
-    .sub_menu_wrapper {
-        width: 80%;
-    }
+   
 
     .ab_right {
 
@@ -2378,6 +2393,9 @@ p.p_counter {
         gap: 20px;
 
     }
+    .footer_2 {
+    margin-left: 0px;
+}
 
     .b_images img {
         width: 100%;
@@ -2555,6 +2573,7 @@ p.p_counter {
     .service_nested {
         padding: 16px 20px;
         border: 1px solid #c9a26747;
+        grid-template-columns: 1fr;
     }
 
     .right_menu ul li {

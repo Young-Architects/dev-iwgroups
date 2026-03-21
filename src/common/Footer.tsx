@@ -8,6 +8,8 @@ interface FooterProps {
 
 function Footer({ result }: FooterProps) {
 
+  console.log(result)
+
   return (
 
     <div className="outer_section footer_outer">
@@ -21,6 +23,9 @@ function Footer({ result }: FooterProps) {
             <div className="footer_1">
               <div className="logo">
                 <img src={result?.footer_logo || "/Logo.png"} alt="logo" />
+                <div className="f_content">
+                  <p>{result?.footer_para || 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters'}</p>
+                </div>
               </div>
             </div>
 

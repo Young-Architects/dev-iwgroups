@@ -144,6 +144,7 @@ export interface HeaderFooterData {
   header_logo?: string
   footer_logo?: string
   top_bar?: string
+  footer_para?:string
 
   phones?: string[]
   emails?: string[]
@@ -297,12 +298,14 @@ export interface GalleryItem {
 export interface BlogSingleAcf {
   overview: string
   gallries: GalleryItem[]  
+  image:string
 }
 
 export interface BlogSingleItem {
   id: number
   slug: string
   acf: BlogSingleAcf
+  
 }
 
 export type BlogSingle = BlogSingleItem[]
