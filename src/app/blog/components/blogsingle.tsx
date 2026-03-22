@@ -10,7 +10,7 @@ function Blogsingle({ slug }: { slug: string }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
- 
+
   const [isOpen, setIsOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [images, setImages] = useState<string[]>([])
@@ -47,14 +47,8 @@ function Blogsingle({ slug }: { slug: string }) {
 
   return (
     <>
-       
-      {/* {cleanSlug !== 'demohtml' && (
-        <div className="blog_top_bar">
-          <div className="inner_section">
-            <h2>{cleanSlug || 'blog single page'}</h2>
-          </div>
-        </div>
-      )} */}
+
+
 
       <div className="b_outer">
         <div className="inner_section">
@@ -62,14 +56,21 @@ function Blogsingle({ slug }: { slug: string }) {
           {result?.map((e, i: number) => {
             return (
               <div className="b_inner_wrapper" key={i}>
-                
+
 
                 <div className="blog_top_img">
                   <img src={e?.acf?.image} alt="img" />
+                  {cleanSlug !== 'demohtml' && (
+                    <div className="blog_top_bar">
+                      
+                        <h2>{cleanSlug || 'blog single page'}</h2>
+                     
+                    </div>
+                  )}
                 </div>
 
-                
- 
+
+
                 <div className="overview">
                   <div
                     className="conent"
@@ -77,7 +78,7 @@ function Blogsingle({ slug }: { slug: string }) {
                   />
                 </div>
 
-             
+
                 <div className="b_images">
                   {e?.acf?.gallries?.map((img: any, index: number) => {
                     return (
@@ -106,11 +107,11 @@ function Blogsingle({ slug }: { slug: string }) {
         </div>
       </div>
 
-       
+
       {isOpen && (
         <div className="blog_popup_overlay">
 
-     
+
           <button
             className="blog_close_btn"
             onClick={() => setIsOpen(false)}
@@ -118,7 +119,7 @@ function Blogsingle({ slug }: { slug: string }) {
             ✕
           </button>
 
-        
+
           <button
             className="blog_prev_btn"
             onClick={() =>
@@ -130,14 +131,14 @@ function Blogsingle({ slug }: { slug: string }) {
             ◀
           </button>
 
-        
+
           <img
             src={images[currentIndex]}
             className="blog_popup_image"
             alt="popup"
           />
 
-        
+
           <button
             className="blog_next_btn"
             onClick={() =>
@@ -149,7 +150,7 @@ function Blogsingle({ slug }: { slug: string }) {
             ▶
           </button>
 
-          
+
           <div className="blog_counter">
             {currentIndex + 1} / {images.length}
           </div>

@@ -30,6 +30,12 @@ body {
 
 
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+ 
 iframe {
     width: 100%;
 }
@@ -1053,6 +1059,8 @@ h4.top_heading::before {
     height: 100%;
 }
 
+
+
 .inn_right {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -1587,6 +1595,35 @@ h3.ab_sec_heading {
     padding: 60px 0px;
 }
 
+.team_img img {
+
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+
+}
+
+.team_img img:hover {
+    transform:  scale(1.02);
+     
+}
+
+.team_img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.team_img img {
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+
+.team_card:hover .team_img img {
+    transform: scale(1.3);
+}
+
+ 
+
 .teams_slider {
     overflow: hidden;
     width: 100%;
@@ -1833,6 +1870,7 @@ h3.t-name {
     z-index: 1;
     left: 0;
     border-radius: 14px;
+    pointer-events: none;
 }
 .team_img {
     position: relative;
@@ -2323,9 +2361,27 @@ button.active {
     color: var(--black-color);
 }
 
+ .blog_top_img {
+    position: relative;
+    display: flex;
+}
+
 .blog_top_bar {
-    background: #faf9f6;
-    padding: 60px 0px;
+    position: absolute;
+    width: 97%;
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+   
+}
+.blog_top_img:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00000082;
+    border-radius: 6px;
 }
 
 .blog_top_bar h2 {
@@ -2333,6 +2389,7 @@ button.active {
     font-size: 50px;
     text-transform: capitalize;
     color: var(--primary-yellow);
+    
 }
 
 .blog_popup_overlay {
@@ -3100,7 +3157,8 @@ button.p_btn {
 
     .blog_top_bar h2 {
 
-        font-size: 36px;
+        font-size: 24px;
+        line-height: 28px;
     }
 
     .menu_settings {

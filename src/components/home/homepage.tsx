@@ -77,6 +77,9 @@ if (error) {
   const philosophy = data?.acf ?? []
 
 
+  
+
+
   return (
     <>
       <HomeSlider slider={slider} sliderContent={sliderContent}/>

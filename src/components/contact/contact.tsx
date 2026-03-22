@@ -82,8 +82,8 @@ function Contact() {
               <h4>Don't Hesitate To Ask</h4>
               <h3>{result?.contact_heading}</h3>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#caa46b">
-  <path d="M12 2L2 7v2h20V7L12 2zm-7 9v7h2v-7H5zm4 0v7h2v-7H9zm4 0v7h2v-7h-2zm4 0v7h2v-7h-2zM2 20h20v2H2v-2z"/>
-</svg>
+                <path d="M12 2L2 7v2h20V7L12 2zm-7 9v7h2v-7H5zm4 0v7h2v-7H9zm4 0v7h2v-7h-2zm4 0v7h2v-7h-2zM2 20h20v2H2v-2z" />
+              </svg>
               <p>{result?.contact_para}</p>
             </div>
 
