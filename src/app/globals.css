@@ -3,12 +3,20 @@
     --primary-color: #284362;
     --primary-font: 'Rubik';
     --primary-yellow: #c9a267;
+    --roboto-font:'Roboto'
 }
 
 
 @font-face {
     font-family: 'Rubik';
     src: url('/fonts/Rubik/static/Rubik-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto/static/Roboto_SemiCondensed-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -67,6 +75,42 @@ html {
 }
 
 
+
+.con_left{
+    font-family: var(--roboto-font);
+    text-align: center;
+    font-weight: 600;
+}
+
+.con_left h4 {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+    margin: 6px;
+    padding: 0;
+    color: var(--primary-yellow);
+}
+
+.con_left h3 {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 6px 0px;
+    text-transform: uppercase;
+}
+.con_left p{
+    font-weight: normal;
+    margin: 0;
+   
+}
+
+.c_outer {
+    padding: 65px 0px;
+}
+
+.con_left svg {
+    width: 20px;
+    margin: 10px 0px 10px 0px;
+}
 
 
 
@@ -394,22 +438,26 @@ ul.sub_menu:not(:last-child) {
 
 .main_header_outer {
     width: 100%;
-    transition: transform 0.5s ease, background 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 99999999;
+    transition: transform 0.4s ease-in-out,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+    will-change: transform;
 }
 
-
+ 
 .main_header_outer.active-header {
-    position: fixed;
-    top: 0;
-    left: 0;
     background: #ffffff;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    z-index: 999999999;
     border-bottom: 8px solid var(--primary-yellow);
 }
 
+ 
+
 .main_header_outer.hide-header {
-    transform: translateY(-100%);
+    transform: translateY(-110%);
 }
 
 @keyframes slideDown {
@@ -1010,7 +1058,7 @@ h4.top_heading::before {
     gap: 20px;
     display: grid;
     padding: 20px;
-    background: #fff;
+    background:#343A4A;
     border-radius: 20px;
 }
 
@@ -1019,27 +1067,30 @@ h4.top_heading::before {
 }
 
 .in_card {
-    padding: 20px;
-    background: #faf9f6;
-    border-radius: 8px;
-    position: relative;
-    z-index: 99;
+    background: #2f3e5c;  
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 6px 10px rgba(0, 0, 0, 0.25),    
+        0 4px 5px rgba(0, 0, 0, 0.15),     
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);  
+    transition: all 0.3s ease;
 }
 
 .in_card h3 {
     margin: 0px 0px 12px 0px;
-    color: var(--primary-color);
-}
-
-.heading h3 {
-    font-size: 24px;
+    color: var(--primary-yellow);
+    font-size: 22px;
     text-transform: capitalize;
-
 }
+
+
 
 .slider_para p {
     line-height: 28px;
     margin: 0px;
+    color:#fff;
 }
 
 
@@ -1298,7 +1349,7 @@ span.error_fields {
     grid-template-columns: 1fr 1fr;
     gap: 44px;
     display: grid;
-    padding: 20px;
+ 
     align-items: center;
 }
 
@@ -1786,6 +1837,8 @@ h3.t-name {
 .team_img {
     position: relative;
 }
+
+
 
 
 
@@ -2483,6 +2536,7 @@ button.p_btn {
 
 
 
+ 
 
 
 
@@ -3001,6 +3055,19 @@ button.p_btn {
 }
 
 @media only screen and (max-width:600px) {
+    .con_left h3 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 6px 0px;
+    text-transform: uppercase;
+}
+.con_left svg {
+    margin: 0px 0;
+}
+    .con_left {
+    font-family: var(--roboto-font);
+    text-align: left;
+}
     .t_button {
   
     position: relative;

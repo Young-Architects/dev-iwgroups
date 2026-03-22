@@ -157,7 +157,7 @@ const cardWidth = `calc((100%  - ${(perView - 1)}px) / ${perView})`
                     <button className="nav_btn right" onClick={nextSlide}>›</button>
                 </div>
 
-                <div className="slider_container">
+                <div className="pillar_slider_container">
                     <div
                         className="pillar_slider_track"
                         style={{

@@ -48,13 +48,13 @@ function Blogsingle({ slug }: { slug: string }) {
   return (
     <>
        
-      {cleanSlug !== 'demohtml' && (
+      {/* {cleanSlug !== 'demohtml' && (
         <div className="blog_top_bar">
           <div className="inner_section">
             <h2>{cleanSlug || 'blog single page'}</h2>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="b_outer">
         <div className="inner_section">
