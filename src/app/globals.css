@@ -1058,7 +1058,7 @@ h4.top_heading::before {
     gap: 20px;
     display: grid;
     padding: 20px;
-    background:#343A4A;
+    background:var(--primary-color);
     border-radius: 20px;
 }
 
