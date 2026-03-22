@@ -65,8 +65,7 @@ function About() {
 
   const result = data?.acf ?? {}
 
-  console.log(result)
-
+   
 
 
   return (

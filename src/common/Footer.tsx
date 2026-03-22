@@ -8,7 +8,7 @@ interface FooterProps {
 
 function Footer({ result }: FooterProps) {
 
-  console.log(result)
+   
 
   return (
 

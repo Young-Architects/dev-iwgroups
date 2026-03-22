@@ -71,7 +71,7 @@ function Pillars() {
     useEffect(() => {
         const updateView = () => {
             if (window.innerWidth < 600) setPerView(1)
-            else if (window.innerWidth < 992) setPerView(2)
+            else if (window.innerWidth < 1024) setPerView(2)
             else setPerView(3)
         }
 
@@ -136,7 +136,10 @@ function Pillars() {
 
 
     
-    const cardWidth = `calc((100% - ${(perView - 1)}px) / ${perView})`
+    
+ 
+
+const cardWidth = `calc((100%  - ${(perView - 1)}px) / ${perView})`
 
     return (
         <>
@@ -147,12 +150,12 @@ function Pillars() {
                 onMouseLeave={() => setIsPaused(false)}
             >
 
-                <div className='sl_btns' style={{ marginBottom: '12px' }}>
+               
+
+<div className='sl_btns' style={{ marginBottom: '12px' }}>
                     <button className="nav_btn left" onClick={prevSlide}>‹</button>
                     <button className="nav_btn right" onClick={nextSlide}>›</button>
                 </div>
-
-
 
                 <div className="slider_container">
                     <div
@@ -186,11 +189,17 @@ function Pillars() {
                                         start={startCount}
                                     />
 
+                                      <p>{e?.piller_description?.slice(0,150)+'...'}</p>
+
+                                      <button className='p_btn'>know more</button>
+
+
 
                                 </div>
                             </div>
                         ))}
                     </div>
+                     
                 </div>
 
 

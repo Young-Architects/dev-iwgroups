@@ -66,6 +66,8 @@ function Contact() {
 
   const result = data?.acf ?? {}
 
+   
+
 
 
   return (
@@ -76,10 +78,17 @@ function Contact() {
 
           <div className="section_wrapper">
 
+ <div
+  className="contact_bg"
+  style={{ backgroundImage: `url(${result?.image})` }}
+>           
+
             <div className="cont_s_first">
 
               <div className="con_left">
-                <img src={result?.image} alt="contact" />
+              
+                <h3>{result?.contact_heading}</h3>
+                <p>{result?.contact_para}</p>
               </div>
 
               <div className="con_right">
@@ -97,7 +106,7 @@ function Contact() {
             <div className="con_s_third">
               <Address result={result} />
             </div>
-
+</div> 
           </div>
 
         </div>

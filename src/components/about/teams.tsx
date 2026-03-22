@@ -1,17 +1,12 @@
-'use client'
+"use client"
 
 import { fetchTeamMembers } from '@/lib/wordpress'
 import { useEffect, useState, useRef } from 'react'
 
- 
-function Counter({
-  end,
-  start
-}: {
-  end: number
-  start: boolean
-}) {
+function Counter({ end, start }: { end: number; start: boolean }) {
   const [count, setCount] = useState(0)
+
+  const [visibleCards, setVisibleCards] = useState(3)
 
   useEffect(() => {
     if (!start) return
@@ -22,7 +17,6 @@ function Counter({
 
     const timer = setInterval(() => {
       current += increment
-
       if (current >= end) {
         setCount(end)
         clearInterval(timer)
@@ -35,170 +29,175 @@ function Counter({
   }, [end, start])
 
   return (
-    <h3>
+    <h3 className="counter">
       {count}+ <span>{count === 1 ? 'year' : 'years'} of experience</span>
     </h3>
   )
 }
 
- 
 function Teams() {
   const [data, setData] = useState<any[]>([])
   const [current, setCurrent] = useState(0)
-  const [perView, setPerView] = useState(4)
   const [popup, setPopup] = useState<any | null>(null)
+  const [activeMember, setActiveMember] = useState<any>(null)
   const [isPaused, setIsPaused] = useState(false)
 
   const [startCount, setStartCount] = useState(false)
   const sectionRef = useRef<HTMLDivElement | null>(null)
+  const [visibleCards, setVisibleCards] = useState(3)
+useEffect(() => {
+  const updateCards = () => {
+    if (window.innerWidth <= 600) {
+      setVisibleCards(1)
+    } else if (window.innerWidth <= 1248) {
+      setVisibleCards(2)
+    } else {
+      setVisibleCards(3)
+    }
 
- 
+    setCurrent(0)
+  }
+
+  updateCards()
+  window.addEventListener("resize", updateCards)
+
+  return () => window.removeEventListener("resize", updateCards)
+}, [])
+
+   
   useEffect(() => {
     const load = async () => {
       const result = await fetchTeamMembers()
-      setData(result?.members || [])
+      const members = result?.members || []
+      setData(members)
+      setActiveMember(members[0])
     }
     load()
   }, [])
 
- 
-  useEffect(() => {
-    const updateView = () => {
-      if (window.innerWidth < 600) setPerView(1)
-      else if (window.innerWidth < 1024) setPerView(2)
-      else setPerView(4)
-    }
 
-    updateView()
-    window.addEventListener('resize', updateView)
-
-    return () => window.removeEventListener('resize', updateView)
-  }, [])
-
- 
   useEffect(() => {
     if (!data.length || isPaused) return
 
     const interval = setInterval(() => {
       setCurrent((prev) => {
-        if (prev >= data.length - perView) return 0
-        return prev + 1
+        const next = prev >= data.length - visibleCards ? 0 : prev + 1
+        setActiveMember(data[next])
+        return next
       })
-    }, 4500)
+    }, 4000)
 
     return () => clearInterval(interval)
-  }, [data.length, perView, isPaused])
+  }, [data.length, isPaused])
 
- 
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setStartCount(true)
-        }
+        if (entry.isIntersecting) setStartCount(true)
       },
       { threshold: 0.3 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current)
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current)
     }
   }, [])
 
-  
+
   const nextSlide = () => {
-    if (current >= data.length - perView) {
-      setCurrent(0)
-    } else {
-      setCurrent(current + 1)
-    }
+    const next = current >= data.length - visibleCards ? 0 : current + 1
+    setCurrent(next)
+    setActiveMember(data[next])
   }
 
   const prevSlide = () => {
-    if (current <= 0) {
-      setCurrent(data.length - perView)
-    } else {
-      setCurrent(current - 1)
-    }
+    const prev = current <= 0 ? data.length - visibleCards : current - 1
+    setCurrent(prev)
+    setActiveMember(data[prev])
   }
 
- 
-  
-  const cardWidth = `calc((100% - ${(perView - 1)}px) / ${perView})`
+
+  const cardWidth = `calc(100% / ${visibleCards})`
 
   return (
     <>
-      <div
-        className="teams_slider"
-        ref={sectionRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-         
-        <div className="sl_btns">
-          <button className="slider_btn prev" onClick={prevSlide}>
-            ‹
-          </button>
-          <button className="slider_btn next" onClick={nextSlide}>
-            ›
-          </button>
+      <div className="team_section" ref={sectionRef}>
+
+
+        <div className="team_left">
+          <h2>{activeMember?.member_name}</h2>
+
+          <p className="exp_text">
+            has {activeMember?.member_year_enperience}+ year of experience
+          </p>
+
+          <p className="par">
+            {activeMember?.member_description}
+          </p>
         </div>
 
-       
-        <div className="teams_wrapper">
-          <div
-            className="teams_track"
-            style={{
-              transform: `translateX(-${current * (100 / perView)}%)`,
-              display: 'grid',
-              gridTemplateColumns: `repeat(${data.length}, ${cardWidth})`,
-             
-              transition: 'transform 0.5s ease'
-            }}
-          >
-            {data.map((member, i) => (
-              <div
-                className="team_card"
-                key={i}
-                onClick={() => setPopup(member)}
-              >
-                <img src={member?.member_image} />
 
-                <h3>{member?.member_name}</h3>
+        <div
+          className="teams_slider"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
 
-                <div className="y_of_exp">
-                  <Counter
-                    end={Number(member?.member_year_enperience) || 0}
-                    start={startCount}
-                  />
+          <div className="t_button sl_btns">
+            <button className="nav left" onClick={prevSlide}>‹</button>
+            <button className="nav right" onClick={nextSlide}>›</button>
+
+          </div>
+
+          <div className="teams_wrapper">
+            <div
+              className="teams_track"
+              style={{
+                transform: `translateX(-${current * (100 / visibleCards)}%)`,
+                display: 'grid',
+                gridTemplateColumns: `repeat(${data.length}, ${cardWidth})`,
+                transition: 'transform 0.5s ease'
+              }}
+            >
+              {data.map((member, i) => (
+                <div
+                  className="team_card"
+                  key={i}
+                  onMouseEnter={() => setActiveMember(member)}
+                  onClick={() => setPopup(member)}
+                >
+                  <div className="team_img">
+                    <img src={member?.member_image} alt="" />
+                  </div>
+
+                  <div className="team_overlay">
+                    <div className="overlay_content">
+
+                      <Counter
+                        end={Number(member?.member_year_enperience) || 0}
+                        start={startCount}
+                      />
+
+                      <p>{member?.member_description.slice(0, 60) + '...'}</p>
+                      <h3 className="t-name">{member?.member_name}</h3>
+
+
+                    </div>
+                  </div>
                 </div>
-
-                <p>({member?.member_designation})</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
- 
-      <div className="slider_dots">
-        {Array.from({ length: data.length - perView + 1 }).map((_, i) => (
-          <span
-            key={i}
-            className={i === current ? 'dot active' : 'dot'}
-            onClick={() => setCurrent(i)}
-          />
-        ))}
-      </div>
 
-   
+
       {popup && (
         <div className="member_popup">
+
           <div
             className="popup_overlay"
             onClick={() => setPopup(null)}
@@ -206,7 +205,8 @@ function Teams() {
 
           <div className="popup_content">
             <div className="p_img">
-              <img src={popup.member_image} />
+              <img src={popup.member_image} alt="" />
+
               <button
                 className="close_btn"
                 onClick={() => setPopup(null)}

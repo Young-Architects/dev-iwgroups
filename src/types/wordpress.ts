@@ -196,6 +196,8 @@ export interface AddressItem {
   address?: string
   address_lat?: string | number
   address_long?: string | number
+  map_link:string,
+  map_iframe:string
 }
 
 export interface AddressProps {
