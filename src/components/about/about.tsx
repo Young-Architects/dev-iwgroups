@@ -8,6 +8,9 @@ import Videos from './videos'
 import { PageLoader } from '@/common/loader'
 import ErrorState from '@/common/error'
 import Pillars from './pillars'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons'
+import Spacer from '@/common/IconBrand'
 
 function About() {
 
@@ -50,13 +53,13 @@ function About() {
   useEffect(() => {
     fetchAboutPage()
   }, [])
- 
+
 
   if (loading) {
     return <PageLoader />
   }
 
- 
+
 
   if (error) {
     return <ErrorState refetch={fetchAboutPage} />
@@ -65,7 +68,7 @@ function About() {
 
   const result = data?.acf ?? {}
 
-   
+
 
 
   return (
@@ -74,26 +77,51 @@ function About() {
         <div className="inner_section">
 
           <div className="section_wrapper">
-            <h4 className="top_heading">{result?.heading}</h4>
-            <h3 className="section_m_heading">About us</h3>
+            <h4 className="layout_heading">{result?.heading}</h4>
+            <h3 className="section_heading_h3">About us</h3>
+            <Spacer/>
             <p>{result?.paragraph}</p>
           </div>
 
           <div className="ab_">
 
             <div className="mission about_section">
-              <h3 className="ab_sec_heading">{result?.mission_heading}</h3>
-              <p>{result?.mission_paragraph}</p>
+              <img src={result?.our_mission_image} alt="" />
+              <div className="ab_para_content">
+                <h3 className="ab_sec_heading">{result?.mission_heading}</h3>
+                <div className="ab_icon_content">
+                  <hr/>
+                   <FontAwesomeIcon icon={faBuildingColumns} />
+                  <hr/>
+                </div>
+                <p>{result?.mission_paragraph}</p>
+              </div>
             </div>
 
             <div className="vision about_section">
-              <h3 className="ab_sec_heading">{result?.vision_heading}</h3>
-              <p>{result?.vision_paragraph}</p>
+              <img src={result?.our_vision_image} alt="" />
+              <div className="ab_para_content">
+                <h3 className="ab_sec_heading">{result?.vision_heading}</h3>
+                   <div className="ab_icon_content">
+                  <hr/>
+                   <FontAwesomeIcon icon={faBuildingColumns} />
+                  <hr/>
+                </div>
+                <p>{result?.vision_paragraph}</p>
+              </div>
             </div>
 
             <div className="values about_section">
-              <h3 className="ab_sec_heading">{result?.values_heading}</h3>
-              <p>{result?.values_paragrapg}</p>
+              <img src={result?.our_value_image} alt="" />
+              <div className="ab_para_content">
+                <h3 className="ab_sec_heading">{result?.values_heading}</h3>
+                   <div className="ab_icon_content">
+                  <hr/>
+                   <FontAwesomeIcon icon={faBuildingColumns} />
+                  <hr/>
+                </div>
+                <p>{result?.values_paragrapg}</p>
+              </div>
             </div>
 
           </div>
@@ -102,13 +130,14 @@ function About() {
       </div>
 
 
-   <div className="ab_outer-pillars">
+      <div className="ab_outer-pillars">
         <div className="inner_section">
 
           <div className="ab_pillars">
 
-            <h4 className="top_heading">our pillars</h4>
-            <h3 className="section_m_heading">{result?.pillar_heading}</h3>
+            <h4 className="layout_heading">our pillars</h4>
+            <h3 className="section_heading_h3">{result?.pillar_heading}</h3>
+            <Spacer/>
             <p>{result?.pillar_paragraph}</p>
 
             <Pillars />
@@ -124,8 +153,9 @@ function About() {
 
           <div className="ab_teams">
 
-            <h4 className="top_heading">our teams</h4>
-            <h3 className="section_m_heading">{result?.team_heading}</h3>
+            <h4 className="layout_heading">our teams</h4>
+            <h3 className="section_heading_h3">{result?.team_heading}</h3>
+            <Spacer/>
             <p>{result?.teams_paragraph}</p>
 
             <Teams />
@@ -140,9 +170,9 @@ function About() {
       <div className="ab_outer-videos">
         <div className="inner_section">
 
-          <h4 className="top_heading">experts videos</h4>
-          <h3 className="section_m_heading">{result?.videos_heading}</h3>
-
+          <h4 className="layout_heading">experts videos</h4>
+          <h3 className="section_heading_h3">{result?.videos_heading}</h3>
+           <Spacer/>
           <div className="ab_videos">
             <Videos result={result} />
           </div>

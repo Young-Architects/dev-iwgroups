@@ -13,6 +13,8 @@ function InnerworkGroups({ our_philosophy }: InnerworkGroupsProps) {
           <h3 className='section_m_heading'>
             {our_philosophy?.inner_work_heading}
           </h3>
+
+          
         </div>
 
         <div className="left_sec">

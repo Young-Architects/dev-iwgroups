@@ -3,12 +3,16 @@
 import { useEffect, useState } from 'react'
 import { fetchPageBySlug } from '@/lib/wordpress'
 
+
+
 import ServiceCard from './card'
 import Testimonials from './testimonials'
 import Faqs from './faqs'
 
 import { PageLoader } from '@/common/loader'
 import ErrorState from '@/common/error'
+import Spacer from '@/common/IconBrand'
+ 
 
 function Services({ slug }: { slug: string }) {
 
@@ -78,8 +82,10 @@ function Services({ slug }: { slug: string }) {
         <div className="inner_section">
           <div className="section_wrapper">
 
-            <h4 className="top_heading">services</h4>
-            <h3 className="section_m_heading">Our Services</h3>
+            <h4 className="layout_heading">services</h4>
+            <h3 className="section_heading_h3">Our Services</h3>
+
+             <Spacer/>
 
             <div
               className="serv_desc"
@@ -102,8 +108,12 @@ function Services({ slug }: { slug: string }) {
         <div className="inner_section">
           <div className="section_wrapper">
 
-            <h4 className="top_heading">What they Say</h4>
-            <h3 className="section_m_heading">Testimonials</h3>
+            <h4 className="layout_heading">What they Say</h4>
+            <h3 className="section_heading_h3">Testimonials</h3>
+
+                  <Spacer/>
+
+          
 
             <p
               className="serv_desc"
@@ -126,8 +136,10 @@ function Services({ slug }: { slug: string }) {
         <div className="inner_section">
           <div className="section_wrapper">
 
-            <h4 className="top_heading">Faqs</h4>
-            <h3 className="section_m_heading">Faqs</h3>
+            <h4 className="layout_heading">Faqs</h4>
+            <h3 className="section_heading_h3">Faqs</h3>
+
+            <Spacer/>
 
             <p
               className="serv_desc"

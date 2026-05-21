@@ -8,15 +8,10 @@ function ServiceCard({ card }: ServiceCardProps) {
 
   const path = usePathname()
 
-  const url = path.split("/")
+  
 
   const [expanded, setExpanded] = useState<Record<number, boolean>>({})
-  const toggleReadMore = (index: number) => {
-    setExpanded((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }))
-  }
+ 
 
   return (
     <>
@@ -26,32 +21,27 @@ function ServiceCard({ card }: ServiceCardProps) {
 
         return (
 
-          <div className="s_card" key={i}>
-              <a href={e?.link} target="_blank">
+            <a href={e?.link} target="_blank" key={i}>
+          <div className="s_card" >
 
             <div className="s_img">
               <img src={e?.image} alt="service_image" />
             </div>
 
             
-              </a>
 
+             
             <div className="s_content_wrapper">
                 <div className="s_card_content">
 
                   <h3>{e?.heading}</h3>
 
-                  <p className={`desc ${isExpanded ? "open" : ""}`}>
-                    {e?.description}
+                  <p className={`desc`}>
+                    {e?.description.slice(0,80)+'...'}
                   </p>
 
 
-                  <button
-                    className="read_more_btn"
-                    onClick={() => toggleReadMore(i)}
-                  >
-                    {isExpanded ? "Read Less" : "Read More"}
-                  </button>
+                   
                 </div>
 
 
@@ -63,6 +53,7 @@ function ServiceCard({ card }: ServiceCardProps) {
 
 
           </div>
+           </a>
         )
       })}
     </>

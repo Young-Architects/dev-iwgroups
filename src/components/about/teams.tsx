@@ -2,6 +2,8 @@
 
 import { fetchTeamMembers } from '@/lib/wordpress'
 import { useEffect, useState, useRef } from 'react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+
 
 function Counter({ end, start }: { end: number; start: boolean }) {
   const [count, setCount] = useState(0)
@@ -147,8 +149,11 @@ useEffect(() => {
         >
 
           <div className="t_button sl_btns">
-            <button className="nav left" onClick={prevSlide}>‹</button>
-            <button className="nav right" onClick={nextSlide}>›</button>
+            <button className="nav left" onClick={prevSlide}>   <FaChevronLeft />
+      </button>
+            
+      
+            <button className="nav right" onClick={nextSlide}><FaChevronRight /></button>
 
           </div>
 
