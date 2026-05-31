@@ -9,8 +9,8 @@ function InnerworkGroups({ our_philosophy }: InnerworkGroupsProps) {
 
       <div className="inn_left">
         <div className="section_top">
-          <h4 className='top_heading'>Innerwork Groups</h4>
-          <h3 className='section_m_heading'>
+          <h4 className='top_heading phill_top'>Innerwork Groups</h4>
+          <h3 className='section_m_heading phill_m_heading'>
             {our_philosophy?.inner_work_heading}
           </h3>
 

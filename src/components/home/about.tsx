@@ -3,18 +3,28 @@
 import { useState } from "react"
 import type { AboutProps } from "@/types/wordpress"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { SERVICES } from "@/constant/constant"
 
 
 function About({ about }: AboutProps) {
  
-
+  const router = useRouter()
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
   const [clickedIndex, setClickedIndex] = useState<number | null>(null)
   const [activeTab, setActiveTab] = useState(0)
 
   const getActiveIndex = () => {
     return clickedIndex !== null ? clickedIndex : hoverIndex
+  }
+
+  const handleButtonClick = (servicePath: string) => {
+    router.push(`/services/${servicePath}`)
+  }
+
+  // Function to format slug by replacing hyphens with spaces
+  const formatSlug = (slug: string) => {
+    return slug.replace(/-/g, ' ')
   }
 
   return (
@@ -55,23 +65,23 @@ function About({ about }: AboutProps) {
 
               <div className="i_c">
                 <h3>{card?.service_name}</h3>
-
               </div>
 
               <div className="i_c_p">
-                {card?.list?.map((item, index) => (
-
-                  <div key={i}>
-                   <p>{item?.service}</p>
-                    <Link
-                      key={index}
-                      href={`/services/${SERVICES[activeTab]}`}
-                    >
-                      visit <span>{SERVICES[activeTab]}</span> service  page
-                    </Link>
-
-                  </div>
-                ))}
+                {/* Bullet point list of services */}
+                <ul className="services_list">
+                  {card?.list?.map((item, index) => (
+                    <li key={index}>{item?.service}</li>
+                  ))}
+                </ul>
+                
+                {/* Single button below all services - formatted slug display */}
+                <Link
+                  href={`/services/${SERVICES[activeTab]}`}
+                  className="visit_button"
+                >
+                  Visit {formatSlug(SERVICES[activeTab])} Service Page
+                </Link>
               </div>
 
             </div>
@@ -90,7 +100,6 @@ function About({ about }: AboutProps) {
           }
         }}
       >
-
 
         <div className="ab_inner_sec card_l">
           {about?.about_group?.slice(0, 2)?.map((e, i) => {
@@ -125,21 +134,22 @@ function About({ about }: AboutProps) {
 
                       <div className="in_tag">
                         <h3>{el?.service_name}</h3>
-
                       </div>
 
-                      {el?.list?.map((list, idx) => (
-                        <>
-                          <p>{list?.service}</p>
-                          <Link
-                            href={`/services/${SERVICES[i]}`}
-                            key={idx}
-                            className="in_list"
-                          >
-                            visit <span>{SERVICES[i]}</span> service  page
-                          </Link>
-                        </>
-                      ))}
+                      {/* Bullet point list of services */}
+                      <ul className="services_bullet_list">
+                        {el?.list?.map((list, idx) => (
+                          <li key={idx}>{list?.service}</li>
+                        ))}
+                      </ul>
+
+                      {/* Single button below all services - formatted slug display */}
+                      <button 
+                        onClick={() => handleButtonClick(SERVICES[i])}
+                        className="visit_button_desktop"
+                      >
+                      {formatSlug(SERVICES[i])}
+                      </button>
 
                     </div>
                   ))}
@@ -149,13 +159,9 @@ function About({ about }: AboutProps) {
           })}
         </div>
 
-
-
         <div className="ab_inner_al">
           <h3>{about?.groudp_heading}</h3>
         </div>
-
-
 
         <div className="ab_inner_sec card_r">
           {about?.about_group?.slice(2, 4)?.map((e, i) => {
@@ -193,18 +199,19 @@ function About({ about }: AboutProps) {
                         <h3>{el?.service_name}</h3>
                       </div>
 
-                      {el?.list?.map((list, idx) => (
-                        <div key={idx}>
-                          <p>{list?.service}</p>
+                  
+                      <ul className="services_bullet_list">
+                        {el?.list?.map((list, idx) => (
+                          <li key={idx}>{list?.service}</li>
+                        ))}
+                      </ul>
 
-                          <Link
-                            href={`/services/${SERVICES[realIndex]}`}
-                            className="in_list"
-                          >
-                           visit <span>{SERVICES[realIndex]}</span> service  page
-                          </Link>
-                        </div>
-                      ))}
+                      <button 
+                        onClick={() => handleButtonClick(SERVICES[realIndex])}
+                        className="visit_button_desktop"
+                      >
+                      {formatSlug(SERVICES[realIndex])}
+                      </button>
 
                     </div>
                   ))}

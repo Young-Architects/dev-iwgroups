@@ -66,8 +66,11 @@ function HomeSlider({
 
                                 <div className="global_button">
                                      
+                                             <button className='m_button b_consultation'>
+                                         <Link href='/contact-us'>Book Consultation</Link>
+                                        </button>
                                     <button className='m_button'>
-                                         <Link href='/contact-us'>Contact Innerwork Group</Link>
+                                         <Link href='/contact-us'>Contact Us</Link>
                                         </button>
 
                                 </div>
@@ -108,11 +111,11 @@ function HomeSlider({
             </div>
 
 
-            <button className="prev_btn" onClick={prevSlide}>
-                ❮
+            <button className="prev_btn sl_button" onClick={prevSlide}>
+                <img src="/images/icon.svg" alt="" />
             </button>
-            <button className="next_btn" onClick={nextSlide}>
-                ❯
+            <button className="next_btn sl_button" onClick={nextSlide}>
+               <img src="/images/icon.svg" alt="" />
             </button>
 
 

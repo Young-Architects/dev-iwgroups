@@ -90,23 +90,24 @@ if (error) {
         </div>
       </div>
 
-      <div className="our_phil_outer">
+      <div className="our_innerwork_outer">
         <div className="inner_section">
           <InnerworkGroups our_philosophy={our_philosophy} />
         </div>
       </div>
 
+      
+      <div className="our_phil_outer">
+        <div className="inner_section">
+          <OurPhilosophy philosophy={philosophy} />
+        </div>
+      </div>
       <div className="commu_eng_outer">
         <div className="inner_section">
           <CommunityEngagement com_pres={com_pres} />
         </div>
       </div>
 
-      <div className="our_phil_outer">
-        <div className="inner_section">
-          <OurPhilosophy philosophy={philosophy} />
-        </div>
-      </div>
 
       <div className="our_global_outer">
         <div className="inner_section">

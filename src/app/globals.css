@@ -755,6 +755,21 @@ button.m_button {
     font-size: 18px;
     border: unset;
     border-radius: 4px;
+    transition: 0.3s;
+}
+
+button.m_button:hover {
+    background-color: var(--primary-yellow);
+}
+.b_consultation{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.b_consultation a{
+    color: #fff!important;
+}
+button.m_button:hover a {
+    color: #fff;
 }
 
 .slider_container {
@@ -782,17 +797,21 @@ button.m_button {
     height: auto;
 }
 
-.prev_btn,
-.next_btn {
+.prev_btn, .next_btn {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background: rgb(255 255 255 / 41%);
+    border-width: medium;
+    border-style: none;
+    border-color: currentcolor;
+    border-image: initial;
+    padding: 14px 16px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: black;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+    border-radius: 100%;
 }
+
 
 .prev_btn {
     left: 10px;
@@ -800,6 +819,9 @@ button.m_button {
 
 .next_btn {
     right: 10px;
+}
+button.next_btn img {
+    transform: rotate(180deg);
 }
 
 .dots {
@@ -978,6 +1000,10 @@ h4.top_heading::before {
     background-size: cover;
     height: 1px;
     width: 64px;
+    filter: invert(1);
+}
+.phill_m_heading{
+    color:#fff;
 }
 
 
@@ -1084,6 +1110,10 @@ h4.top_heading::before {
     padding: 60px 0px;
     position: relative;
 }
+.our_innerwork_outer {
+    padding: 60px 0px;
+    background: var(--primary-color);
+}
 
 
 .phip_content p {
@@ -1094,7 +1124,7 @@ h4.top_heading::before {
 .left_sec {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    gap: 10px;
     margin-top: 35px;
 }
 
@@ -1109,7 +1139,23 @@ h4.top_heading::before {
     height: 100%;
 }
 
+button.visit_button_desktop {
+    background: #2f3e5c;
+    padding: 14px 20px;
+    border: unset;
+    color: #fff;
+    font-family: var(--primary-font);
+    border-radius: 4px;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-size: 16px;
+}
 
+ul.services_bullet_list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
 .inn_right {
     grid-template-columns: 1fr 1fr;
@@ -1349,6 +1395,7 @@ h3.global_pres_heading {
 
 .our_global_outer {
     padding: 50px 0px;
+    background-color: #faf9f6;
 }
 
 .g_list li {
@@ -1670,6 +1717,13 @@ h3.ab_sec_heading {
     width: 100%;
     position: relative;
 }
+span.m_design {
+    margin: 0px;
+    font-size: 16px;
+    color: var(--primary-yellow);
+    font-weight: 600;
+    font-family: var(--roboto-font);
+}
 
 .teams_track {
     display: flex;
@@ -1729,7 +1783,7 @@ h3.ab_sec_heading {
 
 .team_card {
     min-width: 22%;
-    padding: 0px 18px;
+    padding: 3px;
     cursor: pointer;
     text-align: center;
     position: relative;
@@ -1755,20 +1809,46 @@ h3.ab_sec_heading {
 
 .sl_btns {
     display: flex;
-    justify-content: end;
-    gap: 18px;
+    justify-content: space-between;
+     position: absolute;
+    z-index: 9;
+    width: 100%;
+    top: 300px;
+}
+.test_btn {
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 180px;
 }
 
+.test_btn button {
+    padding: 0px;
+    border: unset;
+    background: unset;
+}
+
+.test_btn button img {
+    height: 46px;
+}
+
+button.nav.right img {
+    transform: rotate(180deg);
+}
 .sl_btns button {
-    padding: 5px 14px;
+    padding: 10px 10px;
     background: #c9a267;
-    border: indianred;
     color: #fff;
-    font-size: 18px;
-    border-radius: 4px;
+    border-radius: 100%;
     cursor: pointer;
+    border: unset;
+    display: flex;
 }
-
+button.nav_btn.right img {
+    transform: rotate(180deg);
+}
 .slider_dots {
     display: flex;
     justify-content: center;
@@ -1941,6 +2021,7 @@ h3.counter {
 
 h3.counter span {
     font-size: 16px;
+    font-family: var(--roboto-font);
 }
 
 h3.t-name {
@@ -1948,6 +2029,7 @@ h3.t-name {
     color: #fff;
     text-transform: uppercase;
     margin: 0px;
+    font-family: var(--roboto-font);
 }
 
 .overlay_content {
@@ -1958,7 +2040,8 @@ h3.t-name {
 .overlay_content p {
     margin: 0px;
     color: #cbd5e199;
-    font-size: 16px;
+    font-size: 12px;
+    font-family: var(--roboto-font);
 }
 
 .team_img:after {
@@ -2570,7 +2653,7 @@ button.active {
 }
 
 
-/*OUR PILLARS*/
+/* OUR PILLARS */
 .ab_outer-pillars {
     padding: 60px 0px;
 }
@@ -2598,22 +2681,32 @@ button.active {
    
     border-radius: 20px;
 }
-
+.p_img img {
+    padding: 1.5rem;
+}
 .pillar_card {
-    padding: 20px;
     cursor: pointer;
-    background: #fff;
-    border-radius: 6px;
-
+    background: rgb(255, 255, 255);
+    border-radius: 6px 6px 18px 18px;
+    padding: 20px;
+    border-bottom: 10px solid var(--primary-yellow);
 }
 
 .pillar_card:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 16px;
+}
+.pillar_slider_container {
+    padding: 32px;
+    background:  #e5e7eb;
 }
 
 p.p_counter {
-    color: var(--primary-yellow);
+    color:#28436291;
     font-weight: 600;
+    font-size: 15px;
+}
+button.nav_btn img {
+    filter: invert(1);
 }
 
 .pillar_card img {
@@ -2683,24 +2776,28 @@ p.p_counter {
 }
 
 .pillar_content h3 {
-    font-size: 26px;
+    font-size: 20px;
     color: var(--primary-color);
     margin: 0px;
+    font-family: var(--roboto-font);
 }
 
 .pillar_content p {
     margin: 6px 0px 0px;
+    font-family: var(--roboto-font);
+    font-size: 16px;
 }
 
 button.p_btn {
-    width: 38%;
+    width: 50%;
     margin: 22px auto 0px;
-    background: var(--primary-color);
+    background: var(--primary-yellow);
     color: #fff;
     padding: 8px 14px;
     border-radius: 20px;
     font-family: var(--primary-font);
     text-transform: capitalize;
+    border: unset;
     font-size: 16px;
 }
 

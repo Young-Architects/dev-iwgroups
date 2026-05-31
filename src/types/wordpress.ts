@@ -35,9 +35,14 @@ export interface InnerWorkImage {
   image: string
 }
 
+
 export interface InnerWorkPhilosophyItem {
   heading: string
   paragraph: string
+}
+
+export interface InnerWorkPhilosophyPara {
+  paragraph: [string]
 }
 
 export interface InnerWorkData {

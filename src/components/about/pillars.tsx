@@ -153,8 +153,12 @@ const cardWidth = `calc((100%  - ${(perView - 1)}px) / ${perView})`
                
 
 <div className='sl_btns' style={{ marginBottom: '12px' }}>
-                    <button className="nav_btn left" onClick={prevSlide}>‹</button>
-                    <button className="nav_btn right" onClick={nextSlide}>›</button>
+                    <button className="nav_btn left" onClick={prevSlide}>
+                        <img src="/images/icon.svg" alt="" />
+                    </button>
+                    <button className="nav_btn right" onClick={nextSlide}>
+                        <img src="/images/icon.svg" alt="" />
+                    </button>
                 </div>
 
                 <div className="pillar_slider_container">
@@ -181,7 +185,7 @@ const cardWidth = `calc((100%  - ${(perView - 1)}px) / ${perView})`
 
                                     </h3>
 
-                                    <p className='p_desig'>{e?.piller_title}</p>
+                                    
 
 
                                     <Counter

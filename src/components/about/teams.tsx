@@ -2,7 +2,7 @@
 
 import { fetchTeamMembers } from '@/lib/wordpress'
 import { useEffect, useState, useRef } from 'react'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+ 
 
 
 function Counter({ end, start }: { end: number; start: boolean }) {
@@ -148,12 +148,13 @@ useEffect(() => {
           onMouseLeave={() => setIsPaused(false)}
         >
 
-          <div className="t_button sl_btns">
-            <button className="nav left" onClick={prevSlide}>   <FaChevronLeft />
+          <div className="test_btn">
+            <button className="nav left" onClick={prevSlide}>   
+              <img src="/images/icon-2.svg" alt="" />
       </button>
             
       
-            <button className="nav right" onClick={nextSlide}><FaChevronRight /></button>
+            <button className="nav right" onClick={nextSlide}><img src="/images/icon-2.svg" alt="" /></button>
 
           </div>
 
@@ -181,12 +182,15 @@ useEffect(() => {
                   <div className="team_overlay">
                     <div className="overlay_content">
 
+                    
                       <Counter
                         end={Number(member?.member_year_enperience) || 0}
                         start={startCount}
                       />
+                        <span className='m_design'>{member?.member_designation}</span>
 
-                      <p>{member?.member_description.slice(0, 60) + '...'}</p>
+
+                      <p>{member?.member_description.slice(0, 40) + '...'}</p>
                       <h3 className="t-name">{member?.member_name}</h3>
 
 
