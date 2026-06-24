@@ -22,6 +22,7 @@ function Firms({
         
          <h4 className="top_heading">Our Firms</h4>
         <h3 className="section_m_heading">Our Firms</h3>
+        <p>{firms_description}</p>
 
        
 
