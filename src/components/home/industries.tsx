@@ -14,17 +14,20 @@ function Industries({
   industry,
   industry_description,
 }: IndustriesProps) {
-
-    console.log(`industry`)
-    console.log(industry)
+ 
   return (
-    <section>
-      <h2>Industries We Serve</h2>
+    <div className='ind_wrapper'>
+      
 
-      <p>{industry_description}</p>
+        <h4 className="top_heading">Our Industries</h4>
+        <h3 className="section_m_heading">Our Industries</h3>
+          <p>{industry_description}</p>
+
+    
+<div className="ind_grid_card">
 
       {industry?.map((item, index) => (
-        <div key={index}>
+        <div key={index} className="in_cards">
           <h3>{item.industry_name}</h3>
           <p>{item.short_description}</p>
 
@@ -33,7 +36,8 @@ function Industries({
           </a>
         </div>
       ))}
-    </section>
+</div>
+    </div>
   );
 }
 

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface Leader {
   profile_image: string;
   leader_name: string;
   leader_designation: string;
-  leader_bio: string;
+  short_bio: string;
   leader_email: string;
 }
 
@@ -17,26 +17,100 @@ function Leadership({
   leader_ship_team = [],
   leader_ship_description = "",
 }: LeadershipProps) {
+  const cardsToShow = 3;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const maxIndex = Math.max(
+    leader_ship_team.length - cardsToShow,
+    0
+  );
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) =>
+      prev >= maxIndex ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) =>
+      prev <= 0 ? maxIndex : prev - 1
+    );
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
   return (
     <div className="lead_section_wrapper">
-      <h2>Our Leadership Team</h2>
+      <h4 className="top_heading">Our Leadership</h4>
+      <h3 className="section_m_heading">Our Leadership</h3>
 
       <p>{leader_ship_description}</p>
 
-      <div>
-        {leader_ship_team.map((leader, index) => (
-          <div key={index}>
-            <img
-              src={leader.profile_image}
-              alt={leader.leader_name}
-            />
+      <div className="leadership_slider">
+        <button
+          className="slider_btn prev"
+          onClick={prevSlide}
+        >
+          ❮
+        </button>
 
-            <h3>{leader.leader_name}</h3>
-            <p>{leader.leader_designation}</p>
-            <p>{leader.leader_bio}</p>
-            <p>{leader.leader_email}</p>
+        <div className="slider_container">
+          <div
+            className="slider_track"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+            }}
+          >
+            {leader_ship_team.map((leader, index) => (
+              <div className="l_card" key={index}>
+                <img
+                  src={leader.profile_image}
+                  alt={leader.leader_name}
+                />
+
+                <h3>{leader.leader_name}</h3>
+
+                <p className="designation">
+                  ({leader.leader_designation})
+                </p>
+
+                <p>{leader.short_bio}</p>
+
+                
+                  <a href={`mailto:{leader.leader_email}`}>{leader.leader_email}</a>
+                  
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <button
+          className="slider_btn next"
+          onClick={nextSlide}
+        >
+          ❯
+        </button>
+      </div>
+
+      <div className="slider_dots">
+        {Array.from({ length: maxIndex + 1 }).map(
+          (_, index) => (
+            <span
+              key={index}
+              className={`dot ${
+                currentIndex === index ? "active" : ""
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          )
+        )}
       </div>
     </div>
   );

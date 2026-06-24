@@ -104,7 +104,7 @@ function Homepage() {
       </div>
 
 
-      <div className="firms_outer">
+      <div className="firms_outer s_outer">
         <div className="inner_section">
           <Firms firms={firms} firms_description={firms_description} />
 
@@ -118,7 +118,7 @@ function Homepage() {
       </div>
 
 
-      <div className="industry_outer">
+      <div className="industry_outer s_outer">
         <div className="inner_section">
           <Industries industry={industry} industry_description={industry_description} />
 
@@ -126,13 +126,13 @@ function Homepage() {
         </div>
       </div>
 
-      <div className="call_to_action">
+      <div className="call_to_action s_outer">
         <div className="inner_section">
           <Calltoaction cta={cta} />
         </div>
       </div>
 
-      <div className="leader_ship_outer">
+      <div className="leader_ship_outer s_outer">
         <div className="inner_section">
           <Leadership leader_ship_team={leader_ship_team} leader_ship_description={leader_ship_description} />
         </div>

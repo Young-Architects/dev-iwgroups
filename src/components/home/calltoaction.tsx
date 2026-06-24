@@ -14,19 +14,11 @@ interface CalltoactionProps {
 
 function Calltoaction({ cta }: CalltoactionProps) {
   return (
-    <section>
-      {/* Community Section */}
-      <div className="community-section">
-        <h2>{cta?.com_heading}</h2>
+    <div className="c_action_wrapper">
+         <h4 className="top_heading">Call To Action</h4>
+         
 
-        <div
-          dangerouslySetInnerHTML={{
-            __html: cta?.com_paragraph || "",
-          }}
-        />
-      </div>
-
-      {/* CTA Section */}
+       
       <div className="cta-section">
         <h2>{cta?.cta_title}</h2>
 
@@ -36,7 +28,7 @@ function Calltoaction({ cta }: CalltoactionProps) {
 
         <button>Contact Us</button>
       </div>
-    </section>
+    </div>
   );
 }
 

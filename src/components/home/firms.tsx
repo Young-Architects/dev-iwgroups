@@ -17,11 +17,13 @@ function Firms({
   firms_description = "",
 }: FirmsProps) {
   return (
-    <section className="firms-section">
+    <div className="firms-section">
       <div className="container">
-        <h2>Our Firms</h2>
+        
+         <h4 className="top_heading">Our Firms</h4>
+        <h3 className="section_m_heading">Our Firms</h3>
 
-        <p>{firms_description}</p>
+       
 
         <div className="firms-grid">
           {firms.map((firm, index) => (
@@ -49,7 +51,7 @@ function Firms({
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
