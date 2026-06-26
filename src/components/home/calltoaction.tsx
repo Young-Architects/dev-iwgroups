@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface CTAData {
@@ -26,7 +27,8 @@ function Calltoaction({ cta }: CalltoactionProps) {
 
         <p>{cta?.cta_description}</p>
 
-        <button>Contact Us</button>
+        
+        <Link href={'/contact-us'}>Contact us</Link>
       </div>
     </div>
   );

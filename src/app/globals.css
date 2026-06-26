@@ -2822,7 +2822,7 @@ button.p_btn {
     background: #fff;
     border: 1px solid #e7e7e7;
     border-radius: 6px;
-    padding: 35px;
+    padding: 20px;
     transition: all .4s cubic-bezier(.25, .8, .25, 1);
 }
 
@@ -2885,7 +2885,8 @@ button.p_btn {
     color: var(--primary-yellow);
 }
 
-.cta-section button {
+.cta-section a {
+    text-decoration: none;
     padding: 8px 20px;
     background: var(--primary-yellow);
     border: unset;
@@ -2893,6 +2894,10 @@ button.p_btn {
     border-radius: 4px;
     font-family: var(--primary-font);
     font-size: 16px;
+}
+.cta-section a:hover {
+    text-decoration: underline;
+   
 }
 
 /*LEADERSHIP CSS*/
@@ -2998,9 +3003,234 @@ button.p_btn {
 }
 
  
+/*Affiliations*/
+
+.affiliations_outer {
+    background: #faf9f6;
+}
+.affiliations-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+}
+.affiliation-card {
+     cursor: pointer;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    transition: all .4s cubic-bezier(.25, .8, .25, 1);
+}
+.affiliation-card img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+}
+.affiliation-card a {
+    color: var(--primary-yellow);
+    text-transform: capitalize;
+}
+
+.affiliation-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+.aff_contect {
+    padding: 0px 20px 20px 20px;
+}
 
 
+/* ===========================
+Testimonials
+===========================*/
 
+.testimonial_section_wrapper{
+    width:100%;
+}
+
+.testimonial_top_heading{
+    
+    color:var(--primary-yellow);
+    font-size:18px;
+    margin-bottom:10px;
+    text-transform:uppercase;
+}
+
+.testimonial_heading{
+  
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.testimonial_desc{
+   
+    margin:auto;
+    line-height:1.8;
+    color:#666;
+    margin-bottom:60px;
+}
+
+/* Slider */
+
+.testimonial_slider{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.testimonial_slider_container{
+    overflow:hidden;
+    width:100%;
+}
+
+.testimonial_slider_track{
+    display:flex;
+    transition:.6s ease;
+}
+
+/* Card */
+
+.testimonial_card{
+    min-width:33.333%;
+    padding:15px;
+    box-sizing:border-box;
+}
+
+.testimonial_card_inner{
+    background:#fff;
+    border-radius:12px;
+    padding:35px 25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    text-align:center;
+    height:100%;
+}
+
+.testimonial_card img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:20px;
+}
+
+.testimonial_card h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.testimonial_designation{
+    display:block;
+    color:var(--primary-yellow);
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.testimonial_card h5{
+    color:#777;
+    margin-bottom:15px;
+    font-size:15px;
+}
+
+.testimonial_rating{
+    color:#ffb400;
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.testimonial_card p{
+    color:#555;
+    line-height:1.7;
+}
+
+/* Buttons */
+
+.testimonial_slider_btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:var(--primary-yellow);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+    flex-shrink:0;
+}
+
+.testimonial_slider_btn:hover{
+    background:var(--primary-yellow);
+}
+
+/* Dots */
+
+.testimonial_slider_dots{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:35px;
+}
+
+.testimonial_dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ccc;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.testimonial_dot.active{
+    background:var(--primary-yellow);
+    transform:scale(1.2);
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+    .firms-grid {
+    grid-template-columns: repeat(2, 1fr);
+     
+}
+.affiliations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    display: grid;
+}
+.ind_grid_card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    display: grid;
+}
+
+.testimonial_card{
+    min-width:50%;
+}
+
+.testimonial_desc{
+    width:90%;
+}
+
+}
+
+@media(max-width:768px){
+
+.testimonial_card{
+    min-width:100%;
+}
+
+.testimonial_slider{
+    gap:10px;
+}
+
+.testimonial_heading{
+    font-size:30px;
+}
+
+.testimonial_slider_btn{
+    width:40px;
+    height:40px;
+}
+
+}
 
 
 
@@ -3521,6 +3751,19 @@ button.p_btn {
     font-weight: 800;
     margin: 6px 0px;
     text-transform: uppercase;
+}
+.affiliations-grid, .ind_grid_card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        display: grid;
+    }
+    .firms-grid {
+        grid-template-columns: 1fr;
+    }
+    .ind_grid_card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    display: grid;
 }
 .con_left svg {
     margin: 0px 0;

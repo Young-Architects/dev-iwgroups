@@ -16,6 +16,8 @@ import Leadership from './leadership'
 import Calltoaction from './calltoaction'
 import Firms from './firms'
 import Industries from './industries'
+import Affiliations from './affiliations'
+import ClientTestimonials from './clienttestimonials'
 
 function Homepage() {
 
@@ -89,6 +91,12 @@ function Homepage() {
   const industry_description = data.acf?.industry_description
   const industry = data.acf?.industries
 
+  const affiliations_description = data.acf?.affiliations_description
+  const affiliations = data.acf?.affiliations_list
+
+  const testimonials_description = data.acf?.testimonials_description
+  const client_testimonials = data.acf?.client_testimonials
+
   const cta = data?.acf
 
 
@@ -137,6 +145,24 @@ function Homepage() {
           <Leadership leader_ship_team={leader_ship_team} leader_ship_description={leader_ship_description} />
         </div>
       </div>
+
+
+      <div className="affiliations_outer s_outer">
+        <div className="inner_section">
+          <Affiliations affiliations={affiliations} affiliations_description={affiliations_description} />
+        </div>
+      </div>
+
+
+      <div className="ct_test_outer s_outer">
+        <div className="inner_section">
+          <ClientTestimonials client_testimonials={client_testimonials} testimonials_description={testimonials_description} />
+        </div>
+      </div>
+
+      
+
+    
 
 
       <div className="our_phil_outer">
