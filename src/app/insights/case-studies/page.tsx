@@ -1,8 +1,9 @@
+import CaseStudyPage from '@/components/case-study/CaseStudyPage'
 import React from 'react'
 
 function CaseStudies() {
   return (
-    <div>CaseStudies</div>
+    <CaseStudyPage/>
   )
 }
 

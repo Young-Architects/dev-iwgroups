@@ -2,32 +2,42 @@
 import ErrorState from '@/common/error'
 import { PageLoader } from '@/common/loader'
 import { LIMIT } from '@/constant/constant'
-import { fetchAllBlogs } from '@/lib/wordpress'
-import { BlogResponse, BlogItem } from '@/types/wordpress'
+import { fetchCaseStudy } from '@/lib/wordpress' // Assuming you have this function
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-function Blogpage() {
-  const [data, setData] = useState<BlogResponse>([])
+// Define types based on your API response
+interface CaseStudyItem {
+  id: number
+  title: string
+  slug: string
+  heading: string
+  case_study_paragraph: string
+  image: string | false
+  overview: string
+}
+
+interface CaseStudyResponse {
+  case_studies: CaseStudyItem[]
+}
+
+function CaseStudyPage() {
+  const [data, setData] = useState<CaseStudyItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-
   const [currentPage, setCurrentPage] = useState(1)
   const postsPerPage = LIMIT
 
-  const fetchAboutPage = async () => {
+  const fetchCaseStudyData = async () => {
     try {
       setLoading(true)
       setError(false)
 
-      const result: BlogResponse = await fetchAllBlogs()
-      if (!result) throw new Error('No data')
+      const result: CaseStudyResponse = await fetchCaseStudy()
+      if (!result || !result.case_studies) throw new Error('No data')
 
-      setData(result)
-
-     
+      setData(result.case_studies)
       setCurrentPage(1)
-
     } catch (err) {
       console.error(err)
       setError(true)
@@ -37,18 +47,15 @@ function Blogpage() {
   }
 
   useEffect(() => {
-    fetchAboutPage()
+    fetchCaseStudyData()
   }, [])
 
   if (loading) return <PageLoader />
-  if (error) return <ErrorState refetch={fetchAboutPage} />
+  if (error) return <ErrorState refetch={fetchCaseStudyData} />
 
   const totalPages = Math.ceil(data.length / postsPerPage)
-
   const startIndex = (currentPage - 1) * postsPerPage
   const currentPosts = data.slice(startIndex, startIndex + postsPerPage)
-
-  
   const shouldShowPagination = totalPages > 1
 
   const getPagination = () => {
@@ -85,37 +92,37 @@ function Blogpage() {
   }
 
   return (
-    <div className="blog_outer">
+    <div className="case_study_outer">
       <div className="inner_section">
-        <h4 className="top_heading">blogs</h4>
-        <h3 className="section_m_heading">Blogs</h3>
+        <h4 className="top_heading">Case Studies</h4>
+        <h3 className="section_m_heading">Our Case Studies</h3>
 
-        <div className="section_wrapper blog_wrapper">
-          {currentPosts.map((e: BlogItem, i: number) => (
-            <div className="blog_card" key={i}>
-
-              <div className="blog_img">
-                <img src={e.acf.image} alt={e.acf.heading} />
+        <div className="case_study_wrapper">
+          {currentPosts.map((e: CaseStudyItem, i: number) => (
+            <div className="case_study_card" key={i}>
+              <div className="case_study_img">
+                <img 
+                  src={e.image || '/placeholder-image.jpg'} 
+                  alt={e.heading} 
+                />
               </div>
 
-              <div className="blog_content">
-                <h3>{e.acf.heading}</h3>
-                <p>{e.acf.paragraph.slice(0, 150)}...</p>
+              <div className="case_study_content">
+                <h3>{e.heading}</h3>
+                <p>{e.case_study_paragraph.slice(0, 150)}...</p>
               </div>
 
-              <div className="blog_action">
-                <Link href={`/insights/blog/${e.slug}`}>read more</Link>
+              <div className="case_study_action">
+                <Link href={`/insights/case-studies/${e.slug}`}>
+                  Read More
+                </Link>
               </div>
-
             </div>
           ))}
         </div>
 
-        
         {shouldShowPagination && (
-          <div className="blog_pagination">
-
-           
+          <div className="case_study_pagination">
             <button
               className="prev_next"
               disabled={currentPage === 1}
@@ -124,7 +131,6 @@ function Blogpage() {
               Prev
             </button>
 
-           
             {getPagination().map((page, index) => {
               if (page === '...') {
                 return (
@@ -156,7 +162,6 @@ function Blogpage() {
               )
             })}
 
-           
             <button
               className="prev_next"
               disabled={currentPage === totalPages}
@@ -164,13 +169,11 @@ function Blogpage() {
             >
               Next
             </button>
-
           </div>
         )}
-
       </div>
     </div>
   )
 }
 
-export default Blogpage
+export default CaseStudyPage

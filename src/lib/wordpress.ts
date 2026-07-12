@@ -103,6 +103,41 @@ export const saveContactForm = async (userData:RequestInit) => {
     return null;
   }
 };
+
+
+
+export const fetchCaseStudy = async () => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/api/v2/case-studies?&acf_format=standard`,
+       
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
+export const fetchSingleCaseStudy = async (slug:string) => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wp-json/api/v2/case-studies/${slug}?acf_format=standard`,
+       
+    );
+   
+    const data = await res.json();
+    if (data) {
+      return data?? null;
+    }
+  } catch (error) {
+    console.error('not able to fetch api');
+    return null;
+  }
+};
  
 
    

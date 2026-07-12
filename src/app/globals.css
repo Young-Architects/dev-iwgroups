@@ -2527,6 +2527,12 @@ button.active {
     background: #fff;
     border-radius: 6px;
     border: 1px solid #e7e7e7;
+    transition: all .4s cubic-bezier(.25, .8, .25, 1);
+}
+
+.blog_card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 18px 40px #0000001f;
 }
 
 .blog_action {
@@ -3253,7 +3259,7 @@ Testimonials
     object-fit: cover;
 }
 .gallery_outer {
-    padding: 65px 0px;
+    padding: 60px 0px;
 }
 
 .lightbox_overlay {
@@ -3323,7 +3329,7 @@ button.lightbox_next {border-radius: 100%;padding: 2px 2px;border: unset;display
 /*FAQS*/
 
 .faqs_outer {
-    padding: 65px 0px;
+    padding: 60px 0px;
 }
 
 /* FAQ Accordion Styles */
@@ -3403,8 +3409,62 @@ button.lightbox_next {border-radius: 100%;padding: 2px 2px;border: unset;display
   }
 }
 
+/*CASE STUDY CARDS*/
+.case_study_outer {
+    padding: 60px 0px;
+}
+
+.case_study_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 33px;
+    margin-top: 35px;
+}
+.case_study_img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.case_study_card {
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    padding: 20px;
+    transition: all .4s cubic-bezier(.25, .8, .25, 1);
+}
+.case_study_card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 18px 40px #0000001f;
+}
 
 
+.case_study_featured_image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    position: relative;
+    z-index: -1;
+}
+.case_study_header {
+    position: relative;
+}
+.case_study_single_outer {
+    padding: 60px 0px;
+}
+
+h1.case_study_title {
+    position: absolute;
+    z-index: 8;
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+ 
 
 
 
@@ -3455,6 +3515,11 @@ button.lightbox_next {border-radius: 100%;padding: 2px 2px;border: unset;display
         gap: 20px;
 
     }
+    .case_study_wrapper {
+    
+    gap: 20px;
+    
+}
     .c_address_wrapper {
   
     gap: 20px;
@@ -3728,6 +3793,10 @@ button.lightbox_next {border-radius: 100%;padding: 2px 2px;border: unset;display
     width: 80%;
  
 }
+.case_study_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    
+}
 .gall {
      
     gap: 20px;
@@ -3920,6 +3989,9 @@ button.lightbox_next {border-radius: 100%;padding: 2px 2px;border: unset;display
 }
 
 @media only screen and (max-width:600px) {
+        .case_study_wrapper {
+        grid-template-columns: 1fr;
+    }
     .con_left h3 {
     font-size: 26px;
     font-weight: 800;

@@ -18,6 +18,7 @@ import Firms from './firms'
 import Industries from './industries'
 import Affiliations from './affiliations'
 import ClientTestimonials from './clienttestimonials'
+import Contactuscta from './contactuscta'
 
 function Homepage() {
 
@@ -98,6 +99,7 @@ function Homepage() {
   const client_testimonials = data.acf?.client_testimonials
 
   const cta = data?.acf
+  const contact_us_cta = data?.acf
 
 
 
@@ -190,6 +192,12 @@ function Homepage() {
       <div className="our_global_outer">
         <div className="inner_section">
           <GlobalPpresense global_pres={global_pres} />
+        </div>
+      </div>
+
+       <div className="ct_test_outer s_outer">
+        <div className="inner_section">
+         <Contactuscta contact_us_cta={contact_us_cta}/>
         </div>
       </div>
     </>
