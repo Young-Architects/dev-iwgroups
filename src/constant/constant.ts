@@ -6,6 +6,9 @@ export const SLUG=[
     'innerwork-advisors-llp',
     'innerwork-financial-accounting-advisors-pvt-ltd',
     'innerwork-legal-services',
+    'case-studies',
+    'faqs',
+    'gallery'
 ]
 
 export const SERVICES=[
