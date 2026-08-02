@@ -3078,9 +3078,8 @@ Testimonials
 /* Slider */
 
 .testimonial_slider{
-    display:flex;
-    align-items:center;
-    gap:20px;
+    position: relative;
+    margin-top: 40px;
 }
 
 .testimonial_slider_container{
@@ -3150,16 +3149,27 @@ Testimonials
 /* Buttons */
 
 .testimonial_slider_btn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:var(--primary-yellow);
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-    transition:.3s;
-    flex-shrink:0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-yellow);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: .3s;
+}
+
+.testimonial_prev {
+    left: -20px;
+}
+
+.testimonial_next {
+    right: -20px;
 }
 
 .testimonial_slider_btn:hover{
@@ -3209,6 +3219,13 @@ Testimonials
 
 .testimonial_card{
     min-width:50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.l_card {
+    flex: 0 0 50%;
+    max-width: 50%;
 }
 
 .testimonial_desc{
@@ -3221,6 +3238,13 @@ Testimonials
 
 .testimonial_card{
     min-width:100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.l_card {
+    flex: 0 0 100%;
+    max-width: 100%;
 }
 
 .testimonial_slider{
@@ -3234,6 +3258,29 @@ Testimonials
 .testimonial_slider_btn{
     width:40px;
     height:40px;
+    font-size: 16px;
+}
+
+.testimonial_prev {
+    left: -5px;
+}
+
+.testimonial_next {
+    right: -5px;
+}
+
+.slider_btn {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.prev {
+    left: -5px;
+}
+
+.next {
+    right: -5px;
 }
 
 }
@@ -3989,6 +4036,74 @@ h1.case_study_title {
 }
 
 @media only screen and (max-width:600px) {
+    .slide {
+        height: 520px;
+    }
+
+    .slider_content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        padding: 30px 15px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slider_heading h3 {
+        font-size: 28px;
+        line-height: 36px;
+        margin: 0 0 15px 0;
+        word-break: break-word;
+    }
+
+    .slider_para p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .global_button {
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    button.m_button {
+        width: 100%;
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    .prev_btn, .next_btn {
+        padding: 6px 8px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        margin-top: 40px;
+    }
+
+    .prev_btn {
+        left: 5px;
+    }
+
+    .next_btn {
+        right: 5px;
+    }
+
+    .prev_btn img, .next_btn img {
+        width: 14px;
+        height: 14px;
+    }
+
         .case_study_wrapper {
         grid-template-columns: 1fr;
     }
@@ -4130,33 +4245,8 @@ h1.case_study_title {
     }
 
     .slider_content {
-
-        padding: 50px 18px;
-    }
-
-    .top_bar {
-        grid-template-columns: 10% 1fr 10%;
-        gap: 4px;
-
-
-    }
-
-    .top_bar p {
-
-        line-height: 22px;
-        font-size: 14px;
-    }
-
-    .slider_content {
-        color: #fff;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        max-width: 1150px;
-        height: 100%;
-        margin: auto;
-        display: flex;
-        position: absolute;
+        padding: 25px 15px;
+        box-sizing: border-box;
     }
 
 

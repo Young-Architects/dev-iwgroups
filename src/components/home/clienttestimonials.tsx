@@ -18,14 +18,35 @@ function ClientTestimonials({
   client_testimonials = [],
   testimonials_description = "",
 }: ClientTestimonialsProps) {
-  const cardsToShow = 3;
-
+  const [cardsToShow, setCardsToShow] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 992) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const maxIndex = Math.max(
     client_testimonials.length - cardsToShow,
     0
   );
+
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [maxIndex, currentIndex]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) =>
@@ -43,7 +64,7 @@ function ClientTestimonials({
     const timer = setInterval(nextSlide, 4500);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [currentIndex, maxIndex]);
 
   return (
     <section className="testimonial_section_wrapper">

@@ -17,14 +17,35 @@ function Leadership({
   leader_ship_team = [],
   leader_ship_description = "",
 }: LeadershipProps) {
-  const cardsToShow = 3;
-
+  const [cardsToShow, setCardsToShow] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 992) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const maxIndex = Math.max(
     leader_ship_team.length - cardsToShow,
     0
   );
+
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [maxIndex, currentIndex]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) =>
@@ -44,7 +65,7 @@ function Leadership({
     }, 4500);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [currentIndex, maxIndex]);
 
   return (
     <div className="lead_section_wrapper">
@@ -65,7 +86,7 @@ function Leadership({
           <div
             className="slider_track"
             style={{
-              transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+              transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
             }}
           >
             {leader_ship_team.map((leader, index) => (
